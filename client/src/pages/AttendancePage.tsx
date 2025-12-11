@@ -1,0 +1,177 @@
+import { useState } from "react";
+import { format } from "date-fns";
+import { useAuth } from "../context/AuthContext";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { COURSES } from "../data/mock";
+import { Check, X, Users, Save, CheckCircle2 } from "lucide-react";
+import { cn } from "../utils";
+
+interface AttendanceRecord {
+    id: string;
+    date: string; // ISO DateTime
+    courseId: string;
+    teacherId: string;
+    absentStudentIds: string[];
+    totalStudents: number;
+}
+
+export function AttendancePage() {
+    const { user } = useAuth();
+    const { add } = useLocalStorage<AttendanceRecord>("attendance_records", []);
+
+    const [selectedCourseId, setSelectedCourseId] = useState(COURSES[0].id);
+    const [absentStudents, setAbsentStudents] = useState<Set<string>>(new Set());
+    const [isSaved, setIsSaved] = useState(false);
+
+    const selectedCourse = COURSES.find(c => c.id === selectedCourseId);
+
+    const toggleAttendance = (studentId: string) => {
+        const newAbsent = new Set(absentStudents);
+        if (newAbsent.has(studentId)) {
+            newAbsent.delete(studentId);
+        } else {
+            newAbsent.add(studentId);
+        }
+        setAbsentStudents(newAbsent);
+        setIsSaved(false);
+    };
+
+    const handleSave = () => {
+        if (!selectedCourse) return;
+
+        add({
+            date: new Date().toISOString(),
+            courseId: selectedCourse.id,
+            teacherId: user?.email || "unknown",
+            absentStudentIds: Array.from(absentStudents),
+            totalStudents: selectedCourse.students.length
+        });
+
+        setIsSaved(true);
+        // Optional: Reset or Show Feedback
+        setTimeout(() => setIsSaved(false), 3000);
+    };
+
+    return (
+        <div className="space-y-6 max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-3xl font-bold tracking-tight">Registro de Asistencia</h1>
+                    <p className="text-muted-foreground">
+                        {format(new Date(), "dd 'de' MMMM, yyyy")} • {format(new Date(), "HH:mm")}
+                    </p>
+                </div>
+
+                <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 bg-card border rounded-lg px-3 py-2">
+                        <Users className="w-4 h-4 text-muted-foreground" />
+                        <select
+                            className="bg-transparent outline-none text-sm font-medium w-full md:w-48"
+                            value={selectedCourseId}
+                            onChange={(e) => {
+                                setSelectedCourseId(e.target.value);
+                                setAbsentStudents(new Set());
+                                setIsSaved(false);
+                            }}
+                        >
+                            {COURSES.map(course => (
+                                <option key={course.id} value={course.id}>
+                                    {course.grad} - {course.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div className="bg-card border rounded-xl overflow-hidden shadow-sm">
+                <div className="p-4 border-b bg-muted/30 flex justify-between items-center">
+                    <h2 className="font-semibold text-lg">Lista de Estudiantes</h2>
+                    <div className="text-sm text-muted-foreground">
+                        <span className="font-medium text-foreground">{selectedCourse?.students.length}</span> estudiantes matriculados
+                    </div>
+                </div>
+
+                <div className="divide-y">
+                    {selectedCourse?.students.map((student) => {
+                        const isAbsent = absentStudents.has(student.id);
+                        return (
+                            <div
+                                key={student.id}
+                                className={cn(
+                                    "p-4 flex items-center justify-between transition-colors hover:bg-muted/20",
+                                    isAbsent ? "bg-destructive/5" : "bg-background"
+                                )}
+                            >
+                                <div className="flex items-center gap-4">
+                                    <div className={cn(
+                                        "w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm",
+                                        isAbsent ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary"
+                                    )}>
+                                        {student.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                        <p className="font-medium">{student.name}</p>
+                                        <p className="text-xs text-muted-foreground">
+                                            {isAbsent ? "Ausente" : "Presente"}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={() => toggleAttendance(student.id)}
+                                        className={cn(
+                                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 border",
+                                            isAbsent
+                                                ? "bg-destructive text-destructive-foreground border-destructive hover:bg-destructive/90"
+                                                : "bg-background text-muted-foreground hover:bg-muted"
+                                        )}
+                                    >
+                                        <X className="w-4 h-4" /> Ausente
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            const newAbsent = new Set(absentStudents);
+                                            newAbsent.delete(student.id);
+                                            setAbsentStudents(newAbsent);
+                                        }}
+                                        className={cn(
+                                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 border",
+                                            !isAbsent
+                                                ? "bg-green-600 text-white border-green-600 shadow-sm"
+                                                : "bg-background text-muted-foreground hover:bg-muted"
+                                        )}
+                                    >
+                                        <Check className="w-4 h-4" /> Presente
+                                    </button>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <div className="p-4 bg-muted/30 border-t flex justify-end">
+                    <button
+                        onClick={handleSave}
+                        disabled={isSaved}
+                        className={cn(
+                            "px-6 py-2.5 rounded-lg font-medium flex items-center gap-2 transition-all",
+                            isSaved ? "bg-green-600 text-white" : "bg-primary text-primary-foreground hover:bg-primary/90"
+                        )}
+                    >
+                        {isSaved ? (
+                            <>
+                                <CheckCircle2 className="w-5 h-5" /> Registrado
+                            </>
+                        ) : (
+                            <>
+                                <Save className="w-5 h-5" /> Guardar Registro
+                            </>
+                        )}
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
