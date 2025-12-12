@@ -3,10 +3,10 @@ import { Calendar, LayoutDashboard, ClipboardCheck, BrainCircuit, Building2 } fr
 import { cn } from "../../utils";
 
 const navItems = [
-    { icon: LayoutDashboard, label: "Dashboard", to: "/" },
-    { icon: Calendar, label: "Calendario", to: "/calendar" },
-    { icon: ClipboardCheck, label: "Asistencias", to: "/attendance" },
-    { icon: BrainCircuit, label: "Test Vocacional", to: "/holland-test" },
+    { icon: LayoutDashboard, label: "Dashboard", to: "/app" },
+    { icon: Calendar, label: "Calendario", to: "/app/calendar" },
+    { icon: ClipboardCheck, label: "Asistencias", to: "/app/attendance" },
+    { icon: BrainCircuit, label: "Test Vocacional", to: "/app/holland-test" },
 ];
 
 export function Sidebar() {

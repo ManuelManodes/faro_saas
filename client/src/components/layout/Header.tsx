@@ -6,10 +6,10 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const APP_ROUTES = [
-    { name: "Dashboard", path: "/" },
-    { name: "Calendario", path: "/calendar" },
-    { name: "Asistencia", path: "/attendance" },
-    { name: "Test Holland", path: "/holland-test" },
+    { name: "Dashboard", path: "/app" },
+    { name: "Calendario", path: "/app/calendar" },
+    { name: "Asistencia", path: "/app/attendance" },
+    { name: "Test Holland", path: "/app/holland-test" },
 ];
 
 export function Header() {

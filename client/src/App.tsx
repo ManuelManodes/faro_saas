@@ -7,6 +7,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { CalendarPage } from "./pages/CalendarPage";
 import { AttendancePage } from "./pages/AttendancePage";
 import { HollandTestPage } from "./pages/HollandTestPage";
+import { LandingPage } from "./pages/LandingPage";
 
 function App() {
   return (
@@ -14,9 +15,13 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            {/* Public Landing Page */}
+            <Route path="/" element={<LandingPage />} />
+
             <Route path="/login" element={<LoginPage />} />
 
-            <Route path="/" element={
+            {/* Protected Dashboard Routes */}
+            <Route path="/app" element={
               <RequireAuth>
                 <DashboardLayout />
               </RequireAuth>
@@ -27,6 +32,7 @@ function App() {
               <Route path="holland-test" element={<HollandTestPage />} />
             </Route>
 
+            {/* Redirect unknown routes to Landing Page */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
