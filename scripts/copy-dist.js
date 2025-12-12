@@ -37,9 +37,10 @@ function copyRecursiveSync(src, dest) {
   }
 }
 
-// Copiar client/dist a dist en la raíz
-const sourceDir = path.join(__dirname, '../client/dist');
-const destDir = path.join(__dirname, '../dist');
+// Obtener el directorio raíz del proyecto (dos niveles arriba desde scripts/)
+const projectRoot = path.resolve(__dirname, '..');
+const sourceDir = path.join(projectRoot, 'client', 'dist');
+const destDir = path.join(projectRoot, 'dist');
 
 console.log('Starting copy process...');
 console.log(`Source: ${sourceDir}`);
