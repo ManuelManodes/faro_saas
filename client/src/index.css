@@ -6,15 +6,15 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 224 71% 4%;
-    
+
     /* Primary: #ff006e */
     --primary: 334 100% 50%;
     --primary-foreground: 210 40% 98%;
-    
+
     /* Secondary: #00296b */
     --secondary: 217 100% 21%;
     --secondary-foreground: 210 40% 98%;
-    
+
     --card: 0 0% 100%;
     --card-foreground: 224 71% 4%;
     --popover: 0 0% 100%;
@@ -30,33 +30,56 @@
     --ring: 334 100% 50%;
     --radius: 0.5rem;
   }
- 
+
   .dark {
-    /* Tokyo Night Background: #1a1b26 */
-    --background: 237 29% 13%;
-    --foreground: 227 23% 75%;
-    
-    /* Tokyo Night Primary: #7aa2f7 (Blue) or #bb9af7 (Magenta - keeping close to primary) -> Let's use #7aa2f7 */
-    --primary: 223 88% 72%;
-    --primary-foreground: 237 29% 13%;
-    
-    /* Tokyo Night Secondary: #24283b (Storm) */
-    --secondary: 230 25% 19%;
-    --secondary-foreground: 227 23% 75%;
-    
-    --card: 237 29% 13%;
-    --card-foreground: 227 23% 75%;
-    --popover: 237 29% 13%;
-    --popover-foreground: 227 23% 75%;
-    --muted: 230 25% 19%;
-    --muted-foreground: 227 23% 60%;
-    --accent: 230 25% 19%;
-    --accent-foreground: 227 23% 75%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 230 25% 19%;
-    --input: 230 25% 19%;
-    --ring: 223 88% 72%;
+    /* Elegant Navy Palette (Sober, Minimalist, Low Contrast) */
+    /* Using Secondary (Hue 217) as base for Backgrounds */
+
+    /* Background: Very dark desaturated blue/slate. Approachable, not pitch black. */
+    /* HSL: 217 24% 10% (#131720) */
+    --background: 217 24% 12%;
+
+    /* Foreground: Soft gray-blue, not harsh white. */
+    /* HSL: 217 20% 85% (#d6dae0) */
+    --foreground: 217 20% 85%;
+
+    /* Primary: The User's Pink (#ff006e / 334 100% 50%) 
+       Slightly dimmed for dark mode or kept as small punchy accent? 
+       "Sober" suggests we use it sparingly. Let's keep the hue but maybe 90% saturation or same. 
+       Let's stick to the brand Primary but the environment is low contrast. */
+    --primary: 334 90% 60%;
+    /* Slightly lighter/softer than pure 100% 50% to be legible on dark */
+    --primary-foreground: 217 24% 12%;
+
+    /* Secondary: The User's Deep Blue (#00296b / 217 100% 21%) 
+       Used for muted elements/cards? */
+    --secondary: 217 40% 20%;
+    /* Desaturated version of their deep blue for surfaces */
+    --secondary-foreground: 217 20% 85%;
+
+    /* Card: Slightly elevated from background, low contrast separation */
+    --card: 217 24% 14%;
+    /* Just a tad lighter than BG */
+    --card-foreground: 217 20% 85%;
+
+    --popover: 217 24% 14%;
+    --popover-foreground: 217 20% 85%;
+
+    /* Muted: Subtle blue-gray */
+    --muted: 217 25% 20%;
+    --muted-foreground: 217 20% 65%;
+
+    /* Accent: For hover states, slightly lighter navy */
+    --accent: 217 30% 22%;
+    --accent-foreground: 217 20% 90%;
+
+    --destructive: 349 70% 50%;
+    --destructive-foreground: 217 20% 95%;
+
+    /* Border: Low contrast border, barely visible */
+    --border: 217 30% 18%;
+    --input: 217 30% 18%;
+    --ring: 334 80% 60%;
   }
 }
 
@@ -64,6 +87,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
