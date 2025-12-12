@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm run build -w client && bash scripts/copy-dist.sh",
+  "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist",
   "installCommand": "npm install --include=dev",
   "framework": null,
