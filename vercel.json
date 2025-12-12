@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm run build:vercel",
+  "buildCommand": "npm run build -w client && node scripts/build-vercel.js",
   "outputDirectory": "dist",
   "installCommand": "npm install --include=dev",
   "framework": null,
