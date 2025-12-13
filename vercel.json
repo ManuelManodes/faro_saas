@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "npm run build -w client && (cd /vercel/path0 && node scripts/copy-dist.js) || node /vercel/path0/scripts/copy-dist.js || (pwd && ls -la && node scripts/copy-dist.js)",
-  "outputDirectory": "dist",
+  "buildCommand": "npm run build -w client",
+  "outputDirectory": "client/dist",
   "installCommand": "npm install --include=dev",
   "framework": null,
   "rewrites": [
