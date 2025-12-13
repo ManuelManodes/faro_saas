@@ -12,7 +12,7 @@
     "dev:client": "npm run dev -w client",
     "dev:server": "npm run start:dev -w server",
     "build": "npm run build -w client && npm run build -w server",
-    "build:vercel": "npm run build -w client && bash scripts/copy-dist.sh",
+    "build:vercel": "npm run build -w client && bash ./scripts/copy-dist.sh",
     "lint": "npm run lint -w client && npm run lint -w server",
     "test": "npm run test -w server"
   },
