@@ -1,0 +1,177 @@
+{
+    "info": {
+        "_postman_id": "student-api-collection",
+        "name": "EduSaaS - Students API",
+        "description": "Collection para probar los endpoints de gestión de estudiantes",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create Student",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status code is 201', function () {",
+                            "    pm.response.to.have.status(201);",
+                            "});",
+                            "",
+                            "if (pm.response.code === 201) {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.collectionVariables.set('studentId', jsonData.id);",
+                            "    pm.test('Student ID saved', function () {",
+                            "        pm.expect(jsonData.id).to.exist;",
+                            "    });",
+                            "}"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "x-user-email",
+                        "value": "{{userEmail}}",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"rut\": \"17654321-9\",\n  \"firstName\": \"Nuevo\",\n  \"lastName\": \"Estudiante\",\n  \"email\": \"nuevo@estudiante.cl\",\n  \"phone\": \"+56911223344\",\n  \"birthDate\": \"2013-04-10\",\n  \"grade\": \"5° Básico\",\n  \"section\": \"A\",\n  \"address\": \"Nueva Dirección 100, Santiago\",\n  \"emergencyContact\": {\n    \"name\": \"Contacto Nuevo\",\n    \"phone\": \"+56922334455\",\n    \"relationship\": \"madre\"\n  }\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/students",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "students"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "List Students",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/students",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "students"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get Student by ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "students",
+                        "{{studentId}}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Update Student",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "x-user-email",
+                        "value": "{{userEmail}}",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"phone\": \"+56998877665\",\n  \"address\": \"Dirección Actualizada 456, Viña del Mar\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "students",
+                        "{{studentId}}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Delete Student",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "x-user-email",
+                        "value": "{{userEmail}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "students",
+                        "{{studentId}}"
+                    ]
+                }
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:3001/api",
+            "type": "default"
+        },
+        {
+            "key": "userEmail",
+            "value": "admin@colegio.cl",
+            "type": "default"
+        },
+        {
+            "key": "studentId",
+            "value": "",
+            "type": "default"
+        }
+    ]
+}
