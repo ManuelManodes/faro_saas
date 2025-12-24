@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider, RequireAuth } from "./context/AuthContext";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
 import { LoginPage } from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
+import { StudentsPage } from "./pages/StudentsPage";
 import { CalendarPage } from "./pages/CalendarPage";
 import { AttendancePage } from "./pages/AttendancePage";
 import { HollandTestPage } from "./pages/HollandTestPage";
@@ -14,6 +16,7 @@ function App() {
     <ThemeProvider defaultTheme="system" storageKey="edusaas-theme">
       <AuthProvider>
         <BrowserRouter>
+          <Toaster position="top-right" />
           <Routes>
             {/* Public Landing Page */}
             <Route path="/" element={<LandingPage />} />
@@ -27,6 +30,7 @@ function App() {
               </RequireAuth>
             }>
               <Route index element={<DashboardPage />} />
+              <Route path="students" element={<StudentsPage />} />
               <Route path="calendar" element={<CalendarPage />} />
               <Route path="attendance" element={<AttendancePage />} />
               <Route path="holland-test" element={<HollandTestPage />} />

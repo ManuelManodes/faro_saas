@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { Calendar, LayoutDashboard, ClipboardCheck, BrainCircuit, Building2 } from "lucide-react";
+import { Calendar, LayoutDashboard, ClipboardCheck, BrainCircuit, Building2, Users } from "lucide-react";
 import { cn } from "../../utils";
 
 const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", to: "/app" },
+    { icon: Users, label: "Estudiantes", to: "/app/students" },
     { icon: Calendar, label: "Calendario", to: "/app/calendar" },
     { icon: ClipboardCheck, label: "Asistencias", to: "/app/attendance" },
     { icon: BrainCircuit, label: "Test Vocacional", to: "/app/holland-test" },
