@@ -1,13 +1,13 @@
 {
     "info": {
-        "_postman_id": "student-api-collection",
-        "name": "EduSaaS - Students API",
-        "description": "IMPORTANTE: Cambia el RUT cada vez. RUTs válidos: 11111111-1, 22222222-0, 33333333-K, 14785236-4, 18532147-0",
+        "_postman_id": "calendar-event-api-collection",
+        "name": "EduSaaS - Calendar Events API",
+        "description": "Collection para probar los endpoints de eventos del calendario escolar",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
         {
-            "name": "Create Student",
+            "name": "Create Calendar Event",
             "event": [
                 {
                     "listen": "test",
@@ -19,7 +19,7 @@
                             "",
                             "if (pm.response.code === 201) {",
                             "    var jsonData = pm.response.json();",
-                            "    pm.collectionVariables.set('studentId', jsonData.id);",
+                            "    pm.collectionVariables.set('eventId', jsonData.id);",
                             "}"
                         ],
                         "type": "text/javascript"
@@ -40,7 +40,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n  \"rut\": \"11111111-1\",\n  \"firstName\": \"Juan\",\n  \"lastName\": \"Pérez\",\n  \"email\": \"juan.perez@estudiante.cl\",\n  \"phone\": \"+56977665544\",\n  \"birthDate\": \"2011-03-15\",\n  \"grade\": \"7° Básico\",\n  \"section\": \"B\",\n  \"address\": \"Calle Ejemplo 123, Santiago\",\n  \"emergencyContact\": {\n    \"name\": \"María Pérez\",\n    \"phone\": \"+56966554433\",\n    \"relationship\": \"madre\"\n  }\n}",
+                    "raw": "{\n  \"title\": \"Reunión de Apoderados - 7° Básico\",\n  \"description\": \"Reunión informativa para padres y apoderados de 7° básico. Se tratarán temas de rendimiento académico y planificación del segundo semestre.\",\n  \"eventType\": \"REUNION\",\n  \"startDate\": \"2025-02-10\",\n  \"endDate\": \"2025-02-10\",\n  \"startTime\": \"18:00\",\n  \"endTime\": \"20:00\",\n  \"location\": \"Auditorio Principal\",\n  \"isAllDay\": false,\n  \"status\": \"PROGRAMADO\",\n  \"organizerEmail\": \"director@colegio.cl\",\n  \"attendees\": [\"profesor1@colegio.cl\", \"profesor2@colegio.cl\"]\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -48,51 +48,100 @@
                     }
                 },
                 "url": {
-                    "raw": "{{baseUrl}}/students",
+                    "raw": "{{baseUrl}}/calendar-events",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students"
+                        "calendar-events"
                     ]
                 }
             }
         },
         {
-            "name": "List Students",
+            "name": "List Calendar Events",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/students",
+                    "raw": "{{baseUrl}}/calendar-events",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students"
+                        "calendar-events"
                     ]
                 }
             }
         },
         {
-            "name": "Get Student by ID",
+            "name": "List Events - Filtered by Type",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "raw": "{{baseUrl}}/calendar-events?eventType=EVALUACION&status=PROGRAMADO",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students",
-                        "{{studentId}}"
+                        "calendar-events"
+                    ],
+                    "query": [
+                        {
+                            "key": "eventType",
+                            "value": "EVALUACION"
+                        },
+                        {
+                            "key": "status",
+                            "value": "PROGRAMADO"
+                        }
                     ]
                 }
             }
         },
         {
-            "name": "Update Student",
+            "name": "Get Upcoming Events",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/calendar-events/upcoming?limit=10",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "calendar-events",
+                        "upcoming"
+                    ],
+                    "query": [
+                        {
+                            "key": "limit",
+                            "value": "10"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get Event by ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/calendar-events/{{eventId}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "calendar-events",
+                        "{{eventId}}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Update Event",
             "request": {
                 "method": "PUT",
                 "header": [
@@ -107,7 +156,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n  \"phone\": \"+56999887766\",\n  \"section\": \"C\"\n}",
+                    "raw": "{\n  \"status\": \"CONFIRMADO\",\n  \"location\": \"Sala de Reuniones 2\"\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -115,35 +164,30 @@
                     }
                 },
                 "url": {
-                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "raw": "{{baseUrl}}/calendar-events/{{eventId}}",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students",
-                        "{{studentId}}"
+                        "calendar-events",
+                        "{{eventId}}"
                     ]
                 }
             }
         },
         {
-            "name": "Remove Student",
+            "name": "Delete Event",
             "request": {
                 "method": "DELETE",
-                "header": [
-                    {
-                        "key": "x-user-email",
-                        "value": "{{userEmail}}"
-                    }
-                ],
+                "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "raw": "{{baseUrl}}/calendar-events/{{eventId}}",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students",
-                        "{{studentId}}"
+                        "calendar-events",
+                        "{{eventId}}"
                     ]
                 }
             }
@@ -157,11 +201,11 @@
         },
         {
             "key": "userEmail",
-            "value": "admin@colegio.cl",
+            "value": "director@colegio.cl",
             "type": "default"
         },
         {
-            "key": "studentId",
+            "key": "eventId",
             "value": "",
             "type": "default"
         }

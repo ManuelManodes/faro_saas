@@ -4,6 +4,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StudentHttpModule } from './interface/http/student/student.http.module';
+import { CourseHttpModule } from './interface/http/course/course.http.module';
+import { AttendanceHttpModule } from './interface/http/attendance/attendance.http.module';
+import { HollandTestHttpModule } from './interface/http/holland-test/holland-test.http.module';
+import { CalendarEventHttpModule } from './interface/http/calendar-event/calendar-event.http.module';
 
 @Module({
   imports: [
@@ -18,6 +22,10 @@ import { StudentHttpModule } from './interface/http/student/student.http.module'
       inject: [ConfigService],
     }),
     StudentHttpModule,
+    CourseHttpModule,
+    AttendanceHttpModule,
+    HollandTestHttpModule,
+    CalendarEventHttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],

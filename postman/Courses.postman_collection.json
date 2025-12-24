@@ -1,13 +1,13 @@
 {
     "info": {
-        "_postman_id": "student-api-collection",
-        "name": "EduSaaS - Students API",
-        "description": "IMPORTANTE: Cambia el RUT cada vez. RUTs válidos: 11111111-1, 22222222-0, 33333333-K, 14785236-4, 18532147-0",
+        "_postman_id": "course-api-collection",
+        "name": "EduSaaS - Courses API",
+        "description": "IMPORTANTE: Cambia el código cada vez. Formato: XXX-YYZ-AAAA (ej: MAT-8A-2025, FIS-1M-2025, QUI-2M-2025)",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
         {
-            "name": "Create Student",
+            "name": "Create Course",
             "event": [
                 {
                     "listen": "test",
@@ -19,7 +19,7 @@
                             "",
                             "if (pm.response.code === 201) {",
                             "    var jsonData = pm.response.json();",
-                            "    pm.collectionVariables.set('studentId', jsonData.id);",
+                            "    pm.collectionVariables.set('courseId', jsonData.id);",
                             "}"
                         ],
                         "type": "text/javascript"
@@ -40,7 +40,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n  \"rut\": \"11111111-1\",\n  \"firstName\": \"Juan\",\n  \"lastName\": \"Pérez\",\n  \"email\": \"juan.perez@estudiante.cl\",\n  \"phone\": \"+56977665544\",\n  \"birthDate\": \"2011-03-15\",\n  \"grade\": \"7° Básico\",\n  \"section\": \"B\",\n  \"address\": \"Calle Ejemplo 123, Santiago\",\n  \"emergencyContact\": {\n    \"name\": \"María Pérez\",\n    \"phone\": \"+56966554433\",\n    \"relationship\": \"madre\"\n  }\n}",
+                    "raw": "{\n  \"code\": \"QUI-2M-2025\",\n  \"name\": \"Química\",\n  \"grade\": \"2° Medio\",\n  \"section\": \"A\",\n  \"subject\": \"Química\",\n  \"teacherName\": \"Isabel Rojas\",\n  \"teacherEmail\": \"isabel.rojas@colegio.cl\",\n  \"schedule\": [\n    {\n      \"dayOfWeek\": \"Lunes\",\n      \"startTime\": \"14:00\",\n      \"endTime\": \"15:30\"\n    },\n    {\n      \"dayOfWeek\": \"Miércoles\",\n      \"startTime\": \"14:00\",\n      \"endTime\": \"15:30\"\n    }\n  ],\n  \"capacity\": 28,\n  \"academicYear\": 2025,\n  \"semester\": 1\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -48,51 +48,77 @@
                     }
                 },
                 "url": {
-                    "raw": "{{baseUrl}}/students",
+                    "raw": "{{baseUrl}}/courses",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students"
+                        "courses"
                     ]
                 }
             }
         },
         {
-            "name": "List Students",
+            "name": "List Courses",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/students",
+                    "raw": "{{baseUrl}}/courses",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students"
+                        "courses"
                     ]
                 }
             }
         },
         {
-            "name": "Get Student by ID",
+            "name": "List Courses - Filtered",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "raw": "{{baseUrl}}/courses?grade=2° Medio&subject=Química",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students",
-                        "{{studentId}}"
+                        "courses"
+                    ],
+                    "query": [
+                        {
+                            "key": "grade",
+                            "value": "2° Medio"
+                        },
+                        {
+                            "key": "subject",
+                            "value": "Química"
+                        }
                     ]
                 }
             }
         },
         {
-            "name": "Update Student",
+            "name": "Get Course by ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/courses/{{courseId}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "courses",
+                        "{{courseId}}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Update Course",
             "request": {
                 "method": "PUT",
                 "header": [
@@ -107,7 +133,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n  \"phone\": \"+56999887766\",\n  \"section\": \"C\"\n}",
+                    "raw": "{\n  \"capacity\": 30,\n  \"teacherEmail\": \"nuevo.profesor@colegio.cl\"\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -115,19 +141,19 @@
                     }
                 },
                 "url": {
-                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "raw": "{{baseUrl}}/courses/{{courseId}}",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students",
-                        "{{studentId}}"
+                        "courses",
+                        "{{courseId}}"
                     ]
                 }
             }
         },
         {
-            "name": "Remove Student",
+            "name": "Finalize Course",
             "request": {
                 "method": "DELETE",
                 "header": [
@@ -137,13 +163,13 @@
                     }
                 ],
                 "url": {
-                    "raw": "{{baseUrl}}/students/{{studentId}}",
+                    "raw": "{{baseUrl}}/courses/{{courseId}}",
                     "host": [
                         "{{baseUrl}}"
                     ],
                     "path": [
-                        "students",
-                        "{{studentId}}"
+                        "courses",
+                        "{{courseId}}"
                     ]
                 }
             }
@@ -161,7 +187,7 @@
             "type": "default"
         },
         {
-            "key": "studentId",
+            "key": "courseId",
             "value": "",
             "type": "default"
         }
