@@ -1,9 +1,8 @@
 {
-    "extends": "../server/tsconfig.build.json",
     "compilerOptions": {
         "outDir": "../dist/api",
-        "rootDir": ".",
         "module": "commonjs",
+        "moduleResolution": "node",
         "target": "ES2020",
         "lib": [
             "ES2020"
@@ -16,22 +15,19 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "strictNullChecks": false,
+        "noEmit": false,
         "resolveJsonModule": true,
-        "baseUrl": "../server",
-        "paths": {
-            "@/*": [
-                "src/*"
-            ]
-        }
+        "allowJs": true,
+        "isolatedModules": true
     },
     "include": [
-        "index.ts",
-        "../server/src/**/*"
+        "index.ts"
     ],
     "exclude": [
         "node_modules",
         "dist",
         "test",
-        "**/*spec.ts"
+        "**/*.spec.ts",
+        "**/*.test.ts"
     ]
 }

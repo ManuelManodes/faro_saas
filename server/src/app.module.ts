@@ -18,6 +18,16 @@ import { CalendarEventHttpModule } from './interface/http/calendar-event/calenda
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGODB_URI') || 'mongodb://localhost:27017/edusaas',
+        // Opciones críticas para funciones serverless
+        maxPoolSize: 3, // Máximo 3 conexiones (importante para serverless)
+        minPoolSize: 1, // Mínimo 1 conexión
+        socketTimeoutMS: 30000, // 30 segundos timeout
+        serverSelectionTimeoutMS: 10000, // 10 segundos para seleccionar servidor
+        connectTimeoutMS: 10000, // 10 segundos para conectar
+        heartbeatFrequencyMS: 10000, // Verificar conexión cada 10 segundos
+        retryWrites: true, // Retry automático en escrituras
+        retryReads: true, // Retry automático en lecturas
+        maxIdleTimeMS: 30000, // Cerrar conexiones inactivas después de 30s
       }),
       inject: [ConfigService],
     }),

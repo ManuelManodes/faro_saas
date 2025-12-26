@@ -12,7 +12,8 @@
   "functions": {
     "api/index.ts": {
       "runtime": "@vercel/node@3.2.17",
-      "includeFiles": "server/**"
+      "includeFiles": "server/**",
+      "maxDuration": 30
     }
   }
 }
