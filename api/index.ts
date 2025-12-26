@@ -4,17 +4,14 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from '../server/src/app.module';
 import express, { Express } from 'express';
-import mongoose from 'mongoose';
 
 // Cache para la instancia de la app NestJS
 let cachedApp: Express | null = null;
-// Flag para tracking de estado de conexión MongoDB
-let isMongoConnected = false;
 
 async function bootstrap(): Promise<Express> {
-    // Retornar instancia cacheada si existe y MongoDB está conectado
-    if (cachedApp && isMongoConnected) {
-        console.log('✅ Reutilizando app cacheada con MongoDB conectado');
+    // Retornar instancia cacheada si existe
+    if (cachedApp) {
+        console.log('✅ Reutilizando app cacheada');
         return cachedApp;
     }
 
@@ -75,22 +72,6 @@ async function bootstrap(): Promise<Express> {
     // Inicializar la aplicación
     await app.init();
 
-    // Event listeners para monitorear estado de MongoDB
-    mongoose.connection.on('connected', () => {
-        console.log('✅ MongoDB conectado exitosamente');
-        isMongoConnected = true;
-    });
-
-    mongoose.connection.on('error', (err) => {
-        console.error('❌ Error de conexión MongoDB:', err);
-        isMongoConnected = false;
-    });
-
-    mongoose.connection.on('disconnected', () => {
-        console.log('⚠️ MongoDB desconectado');
-        isMongoConnected = false;
-    });
-
     // Cachear la app para reutilización
     cachedApp = expressApp;
     console.log('✅ App cacheada exitosamente');
@@ -116,7 +97,6 @@ export default async (req: any, res: any) => {
 
         // Resetear caché en caso de error crítico
         cachedApp = null;
-        isMongoConnected = false;
 
         return res.status(500).json({
             statusCode: 500,
