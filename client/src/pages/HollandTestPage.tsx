@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { COURSES } from "../data/mock";
+import { useHollandTests, useCreateHollandTest } from "../hooks/useHollandTest";
+import { useStudents } from "../hooks/useStudents";
 import { BrainCircuit, CheckCircle, ChevronRight, Save, User } from "lucide-react";
 import { cn } from "../utils";
 
@@ -26,14 +26,14 @@ interface HollandResult {
 
 export function HollandTestPage() {
     const { user } = useAuth();
-    const { add, data: results } = useLocalStorage<HollandResult>("holland_results", []);
+    const { data: results = [], isLoading: testsLoading } = useHollandTests();
+    const createHollandTest = useCreateHollandTest();
+    const { data: allStudents = [], isLoading: studentsLoading } = useStudents({ status: 'ACTIVO' });
 
     const [step, setStep] = useState(1);
     const [selectedStudentId, setSelectedStudentId] = useState("");
     const [answers, setAnswers] = useState<Record<string, number>>({});
 
-    // Flatten students for selection
-    const allStudents = COURSES.flatMap(c => c.students.map(s => ({ ...s, course: c.grad })));
     const selectedStudent = allStudents.find(s => s.id === selectedStudentId);
 
     const handleAnswer = (questionId: string, value: number) => {
@@ -51,19 +51,44 @@ export function HollandTestPage() {
         return QUESTIONS.find(q => q.id === topTypeKey)?.type || "Indefinido";
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (!selectedStudent || !user) return;
 
         const dominant = calculateResult();
-        add({
-            date: new Date().toISOString(),
-            teacherId: user.email,
-            studentId: selectedStudent.id,
-            studentName: selectedStudent.name,
-            scores: answers,
-            dominant
-        });
-        setStep(3); // Result view
+
+        // Map answers (R,I,A,S,E,C) to RIASEC scores (0-100)
+        const riasecScores = {
+            realistic: (answers['R'] || 0) * 20,      // Convert 1-5 to 0-100
+            investigative: (answers['I'] || 0) * 20,
+            artistic: (answers['A'] || 0) * 20,
+            social: (answers['S'] || 0) * 20,
+            enterprising: (answers['E'] || 0) * 20,
+            conventional: (answers['C'] || 0) * 20,
+        };
+
+        // Get top 3 dominant types
+        const sortedTypes = Object.entries(answers)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 3)
+            .map(([key]) => key);
+
+        try {
+            await createHollandTest.mutateAsync({
+                studentId: selectedStudent.id,
+                testDate: new Date().toISOString().split('T')[0],
+                scores: riasecScores,
+                dominantTypes: sortedTypes.length === 3 ? sortedTypes : ['R', 'I', 'A'], // Fallback
+                interpretation: `Perfil vocacional dominante: ${dominant}. Puntuaciones: ${Object.entries(answers).map(([k, v]) => `${k}=${v}`).join(', ')}.`,
+                recommendations: [`Carreras relacionadas con perfil ${dominant}`],
+                status: 'COMPLETADO',
+                administeredBy: user.email,
+            });
+
+            setStep(3); // Result view
+        } catch (error) {
+            console.error("Error saving Holland test:", error);
+            alert('❌ Error al guardar el test. Por favor, intenta de nuevo.');
+        }
     };
 
     const reset = () => {
@@ -98,7 +123,7 @@ export function HollandTestPage() {
                             >
                                 <option value="">Seleccione un alumno...</option>
                                 {allStudents.map(s => (
-                                    <option key={s.id} value={s.id}>{s.name} ({s.course})</option>
+                                    <option key={s.id} value={s.id}>{s.fullName} ({s.grade} {s.section})</option>
                                 ))}
                             </select>
                         </div>
@@ -119,7 +144,7 @@ export function HollandTestPage() {
             {step === 2 && (
                 <div className="card bg-card border rounded-xl p-8 shadow-sm animate-in fade-in slide-in-from-right-8">
                     <div className="flex items-center justify-between mb-8">
-                        <h2 className="text-xl font-semibold">Evaluando a: <span className="text-primary">{selectedStudent?.name}</span></h2>
+                        <h2 className="text-xl font-semibold">Evaluando a: <span className="text-primary">{selectedStudent?.fullName}</span></h2>
                         <span className="text-sm text-muted-foreground">Pregunta {Object.keys(answers).length} / {QUESTIONS.length}</span>
                     </div>
 
