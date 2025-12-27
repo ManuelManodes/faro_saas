@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
-import { useAuth } from "../context/AuthContext";
 import { useCourses } from "../hooks/useCourses";
 import { useStudents } from "../hooks/useStudents";
 import { useBulkCreateAttendance } from "../hooks/useAttendance";
@@ -8,7 +7,6 @@ import { Check, X, Users, Save, CheckCircle2 } from "lucide-react";
 import { cn } from "../utils";
 
 export function AttendancePage() {
-    const { user } = useAuth();
     const { data: courses = [], isLoading: coursesLoading } = useCourses({ status: 'ACTIVO' });
     const bulkCreateAttendance = useBulkCreateAttendance();
 
