@@ -68,19 +68,16 @@ export function LandingPage() {
                     </div>
 
 
-                    {/* Montaña/Isla Geométrica - Sostiene faro derecho */}
-                    <svg className="absolute bottom-0 right-0 w-1/3 z-10" height="400" viewBox="0 0 400 400" preserveAspectRatio="xMaxYMax meet">
-                        {/* Isla low-poly - púrpura/coral/cyan */}
-                        <polygon points="350,400 300,300 250,250 200,280 150,320 100,350 50,380 0,400" fill="#181144" opacity="0.4" />
-                        <polygon points="300,300 280,260 240,220 200,240 160,270 140,300" fill="#F96C45" opacity="0.25" />
-                        <polygon points="280,260 260,200 240,160 220,190 200,230" fill="#181144" opacity="0.5" />
-                        <polygon points="260,200 250,150 240,130 230,160" fill="#F96C45" opacity="0.3" />
-                        {/* Pico donde posa el faro */}
-                        <polygon points="250,150 245,120 240,110 235,130 230,150" fill="#17B1C1" opacity="0.2" />
+                    {/* Silueta de isla muy sutil - un solo color */}
+                    <svg className="absolute bottom-0 right-0 w-1/4 z-0" height="300" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" style={{ opacity: 0.08 }}>
+                        <polygon points="300,300 250,250 200,200 150,230 100,260 50,280 0,300" fill="#BBB9ED" />
                     </svg>
 
-                    {/* Mar con ondas */}
-                    <svg className="absolute bottom-0 left-0 w-full opacity-12 z-10" height="120" viewBox="0 0 1000 120" preserveAspectRatio="none">
+                    {/* Mar muy sutil */}
+                    <svg className="absolute bottom-0 left-0 w-full z-0" height="80" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ opacity: 0.06 }}>
+                        <path d="M0,40 Q250,20 500,40 T1000,40 L1000,80 L0,80 Z" fill="#17B1C1" />
+                    </svg>
+
                         <path d="M0,60 Q250,30 500,60 T1000,60 L1000,120 L0,120 Z" fill="#17B1C1" opacity="0.15" />
                         <path d="M0,80 Q200,60 400,80 T800,80 Q900,70 1000,85 L1000,120 L0,120 Z" fill="#181144" opacity="0.3" />
                     </svg>
