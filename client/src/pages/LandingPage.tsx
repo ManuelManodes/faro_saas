@@ -122,12 +122,18 @@ export function LandingPage() {
                                 icon: TrendingUp,
                                 title: "Test Vocacional",
                                 desc: "Integra el test de Holland para orientación vocacional efectiva.",
-                                color: "primary"
+                                color: "lavender"
                             }
                         ].map((feature, i) => (
-                            <div key={i} className="group bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-soft-lg transition-smooth">
-                                <div className={`w-14 h-14 bg-${feature.color}/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-smooth`}>
-                                    <feature.icon className={`w-7 h-7 text-${feature.color}`} />
+                            <div key={i} className="group bg-white border-2 border-gray-200 rounded-3xl p-8 hover:border-coral hover:shadow-soft-lg transition-smooth">
+                                <div className={`w-14 h-14 ${feature.color === 'coral' ? 'bg-coral/10' :
+                                        feature.color === 'cyan' ? 'bg-cyan/10' :
+                                            'bg-lavender/30'
+                                    } rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-smooth`}>
+                                    <feature.icon className={`w-7 h-7 ${feature.color === 'coral' ? 'text-coral' :
+                                            feature.color === 'cyan' ? 'text-cyan' :
+                                                'text-primary'
+                                        }`} />
                                 </div>
                                 <h3 className="text-xl font-display font-bold text-primary mb-3">{feature.title}</h3>
                                 <p className="text-gray-600 leading-relaxed">{feature.desc}</p>

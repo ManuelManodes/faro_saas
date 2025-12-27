@@ -4,35 +4,40 @@
 
 @layer base {
   :root {
+    /* Blanco puro limpio */
     --background: 0 0% 100%;
     --foreground: 252 55% 14%;
-    /* #181144 en HSL */
+    /* #181144 */
 
-    /* Equiem Primary: Púrpura Oscuro #181144 */
+    /* Equiem Primary: Púrpura Oscuro */
     --primary: 252 55% 14%;
     --primary-foreground: 0 0% 100%;
 
-    /* Equiem Secondary: Coral #F96C45 */
+    /* Equiem Secondary: Coral para CTAs */
     --secondary: 17 94% 62%;
     --secondary-foreground: 0 0% 100%;
 
+    /* Cards con sombra subtle */
     --card: 0 0% 100%;
     --card-foreground: 252 55% 14%;
+
     --popover: 0 0% 100%;
     --popover-foreground: 252 55% 14%;
+
     --muted: 220 14% 96%;
     --muted-foreground: 220 8.9% 46%;
+
+    /* Accent: Cyan para elementos secundarios */
     --accent: 189 78% 41%;
-    /* cyan #17B1C1 */
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
+
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
+
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 252 55% 14%;
-    /* primary color */
     --radius: 0.75rem;
-    /* 12px para estilo Equiem */
   }
 
 
