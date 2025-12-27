@@ -44,6 +44,7 @@ export function AttendancePage() {
     };
 
     const handleSave = async () => {
+        const selectedCourse = courses.find(c => c.id === selectedCourseId);
         if (!selectedCourse || courseStudents.length === 0) return;
 
         try {
