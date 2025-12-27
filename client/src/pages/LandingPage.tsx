@@ -14,6 +14,31 @@ export function LandingPage() {
                     <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-coral/20 rounded-full blur-3xl"></div>
                 </div>
 
+                {/* Art Pop 90s Elements */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    {/* Formas geométricas flotantes */}
+                    <div className="absolute top-20 right-10 w-32 h-32 border-4 border-cyan rotate-12 rounded-3xl opacity-30 animate-bounce-slow"></div>
+                    <div className="absolute top-40 left-20 w-24 h-24 bg-coral/20 rotate-45 opacity-40"></div>
+                    <div className="absolute bottom-32 right-32 w-40 h-40 border-4 border-lavender rounded-full opacity-25"></div>
+                    <div className="absolute bottom-20 left-40 w-16 h-16 bg-cyan/30 rounded-full opacity-50"></div>
+
+                    {/* Líneas diagonales Memphis */}
+                    <svg className="absolute top-0 left-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+                        <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                            <circle cx="10" cy="10" r="2" fill="currentColor" className="text-coral" />
+                            <circle cx="30" cy="30" r="2" fill="currentColor" className="text-cyan" />
+                        </pattern>
+                        <rect width="100%" height="100%" fill="url(#dots)" />
+                    </svg>
+
+                    {/* Zigzag pattern */}
+                    <div className="absolute top-1/2 right-0 transform -translate-y-1/2">
+                        <svg width="100" height="200" viewBox="0 0 100 200" className="opacity-20">
+                            <path d="M0,0 L50,50 L0,100 L50,150 L0,200" stroke="currentColor" strokeWidth="3" fill="none" className="text-lavender" />
+                        </svg>
+                    </div>
+                </div>
+
                 <div className="relative container mx-auto px-6 py-24">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         {/* Left: Content */}
