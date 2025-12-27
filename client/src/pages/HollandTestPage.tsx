@@ -14,15 +14,7 @@ const QUESTIONS = [
     { id: "C", text: "¿Prefieres trabajar de manera ordenada, con datos, archivos o reglas claras?", type: "Convencional" },
 ];
 
-interface HollandResult {
-    id: string;
-    date: string;
-    teacherId: string;
-    studentId: string;
-    studentName: string; // Denormalized for display convenience
-    scores: Record<string, number>;
-    dominant: string;
-}
+
 
 export function HollandTestPage() {
     const { user } = useAuth();
@@ -205,7 +197,7 @@ export function HollandTestPage() {
                     <div className="bg-muted/30 p-6 rounded-xl max-w-md mx-auto mb-8 border border-dashed">
                         <p className="text-sm text-muted-foreground uppercase font-semibold mb-2">Resultado Dominante</p>
                         <p className="text-4xl font-bold text-primary mb-2">{calculateResult()}</p>
-                        <p className="text-sm text-muted-foreground">Alumno: {selectedStudent?.name}</p>
+                        <p className="text-sm text-muted-foreground">Alumno: {selectedStudent?.fullName}</p>
                     </div>
 
                     <button
@@ -233,14 +225,14 @@ export function HollandTestPage() {
                         <tbody className="divide-y">
                             {results.slice().reverse().map((res) => (
                                 <tr key={res.id}>
-                                    <td className="p-4">{new Date(res.date).toLocaleDateString()}</td>
-                                    <td className="p-4 font-medium">{res.studentName}</td>
+                                    <td className="p-4">{new Date(res.testDate).toLocaleDateString()}</td>
+                                    <td className="p-4 font-medium">{res.student?.fullName || 'N/A'}</td>
                                     <td className="p-4">
                                         <span className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
-                                            {res.dominant}
+                                            {res.dominantTypes[0] || 'N/A'}
                                         </span>
                                     </td>
-                                    <td className="p-4 text-muted-foreground">{res.teacherId}</td>
+                                    <td className="p-4 text-muted-foreground">{res.administeredBy}</td>
                                 </tr>
                             ))}
                             {results.length === 0 && (
