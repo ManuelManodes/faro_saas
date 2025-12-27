@@ -31,7 +31,7 @@ export function CalendarPage() {
         isAllDay: false,
         status: "PROGRAMADO" as const,
         organizerEmail: "system@colegio.cl",
-        description: "",
+        description: "Evento del calendario institucional",
     });
 
     // Calendar Logic
@@ -68,7 +68,7 @@ export function CalendarPage() {
                     isAllDay: false,
                     status: "PROGRAMADO" as const,
                     organizerEmail: "system@colegio.cl",
-                    description: "",
+                    description: "Evento del calendario institucional",
                 });
             } catch (error) {
                 console.error("Error creating event:", error);
@@ -282,11 +282,14 @@ export function CalendarPage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium mb-1">Descripción</label>
+                                <label className="block text-sm font-medium mb-1">Descripción *</label>
                                 <textarea
+                                    required
                                     className="w-full p-2 rounded-lg border bg-background input-field outline-none min-h-[80px]"
                                     value={formState.description || ""}
                                     onChange={(e) => setFormState(prev => ({ ...prev, description: e.target.value }))}
+                                    placeholder="Mínimo 10 caracteres"
+                                    minLength={10}
                                 />
                             </div>
 
