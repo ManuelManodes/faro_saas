@@ -36,9 +36,7 @@ export function AttendancePage() {
 
     // Filter students by course grade/section
     const selectedCourse = coursesWithStudents.find(c => c.id === selectedCourseId);
-    const courseStudents = selectedCourse
-        ? allStudents.filter(s => s.grade === selectedCourse.grade && s.section === selectedCourse.section)
-        : [];
+    const courseStudents = allStudents; // Mostrar TODOS temporalmente
 
     // Set first course as selected when courses load
     useEffect(() => {
