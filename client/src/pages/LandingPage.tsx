@@ -16,27 +16,77 @@ export function LandingPage() {
 
                 {/* Art Pop 90s Elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    {/* Formas geométricas flotantes */}
-                    <div className="absolute top-20 right-10 w-32 h-32 border-4 border-cyan rotate-12 rounded-3xl opacity-30 animate-bounce-slow"></div>
-                    <div className="absolute top-40 left-20 w-24 h-24 bg-coral/20 rotate-45 opacity-40"></div>
-                    <div className="absolute bottom-32 right-32 w-40 h-40 border-4 border-lavender rounded-full opacity-25"></div>
-                    <div className="absolute bottom-20 left-40 w-16 h-16 bg-cyan/30 rounded-full opacity-50"></div>
+                    {/* Faros - Temática Náutica Realista */}
+                    <div className="absolute top-20 right-10 opacity-25">
+                        {/* Faro Principal con Haz de Luz */}
+                        <svg width="100" height="140" viewBox="0 0 100 140" className="animate-pulse-slow">
+                            {/* Base del faro */}
+                            <rect x="35" y="100" width="30" height="40" fill="currentColor" className="text-coral" rx="2" />
 
-                    {/* Líneas diagonales Memphis */}
-                    <svg className="absolute top-0 left-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-                        <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                            <circle cx="10" cy="10" r="2" fill="currentColor" className="text-coral" />
-                            <circle cx="30" cy="30" r="2" fill="currentColor" className="text-cyan" />
-                        </pattern>
-                        <rect width="100%" height="100%" fill="url(#dots)" />
-                    </svg>
+                            {/* Torre del faro con rayas */}
+                            <rect x="37" y="40" width="26" height="15" fill="currentColor" className="text-white" opacity="0.8" />
+                            <rect x="37" y="55" width="26" height="15" fill="currentColor" className="text-coral" />
+                            <rect x="37" y="70" width="26" height="15" fill="currentColor" className="text-white" opacity="0.8" />
+                            <rect x="37" y="85" width="26" height="15" fill="currentColor" className="text-coral" />
 
-                    {/* Zigzag pattern */}
-                    <div className="absolute top-1/2 right-0 transform -translate-y-1/2">
-                        <svg width="100" height="200" viewBox="0 0 100 200" className="opacity-20">
-                            <path d="M0,0 L50,50 L0,100 L50,150 L0,200" stroke="currentColor" strokeWidth="3" fill="none" className="text-lavender" />
+                            {/* Techo/linterna */}
+                            <polygon points="50,25 62,40 38,40" fill="currentColor" className="text-primary" />
+
+                            {/* Luz brillante */}
+                            <circle cx="50" cy="28" r="6" fill="currentColor" className="text-lavender animate-lighthouse-glow" />
+
+                            {/* Haz de luz giratorio */}
+                            <g className="origin-center animate-lighthouse-beam" style={{ transformOrigin: '50px 28px' }}>
+                                <path d="M50,28 L80,10 L80,46 Z" fill="currentColor" className="text-lavender" opacity="0.15" />
+                            </g>
                         </svg>
                     </div>
+
+                    <div className="absolute bottom-32 left-20 opacity-20">
+                        {/* Faro Secundario */}
+                        <svg width="70" height="100" viewBox="0 0 70 100" className="animate-pulse-slow" style={{ animationDelay: '1.5s' }}>
+                            {/* Base */}
+                            <rect x="27" y="70" width="16" height="30" fill="currentColor" className="text-cyan" rx="1" />
+
+                            {/* Torre con rayas */}
+                            <rect x="28" y="35" width="14" height="10" fill="currentColor" className="text-white" opacity="0.7" />
+                            <rect x="28" y="45" width="14" height="10" fill="currentColor" className="text-cyan" />
+                            <rect x="28" y="55" width="14" height="10" fill="currentColor" className="text-white" opacity="0.7" />
+                            <rect x="28" y="65" width="14" height="10" fill="currentColor" className="text-cyan" />
+
+                            {/* Techo */}
+                            <polygon points="35,20 42,35 28,35" fill="currentColor" className="text-primary" />
+
+                            {/* Luz */}
+                            <circle cx="35" cy="23" r="4" fill="currentColor" className="text-coral animate-lighthouse-glow" style={{ animationDelay: '1.5s' }} />
+
+                            {/* Haz de luz */}
+                            <g className="animate-lighthouse-beam" style={{ transformOrigin: '35px 23px', animationDelay: '1.5s' }}>
+                                <path d="M35,23 L55,10 L55,36 Z" fill="currentColor" className="text-coral" opacity="0.12" />
+                            </g>
+                        </svg>
+                    </div>
+
+                    {/* Ondas del mar */}
+                    <svg className="absolute bottom-0 left-0 w-full opacity-10" height="100" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                        <path d="M0,50 Q250,20 500,50 T1000,50 L1000,100 L0,100 Z" fill="currentColor" className="text-cyan" />
+                    </svg>
+
+                    {/* Estrellas parpadeantes - Cielo nocturno */}
+                    <svg className="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        {/* Estrellas como puntos brillantes */}
+                        {[...Array(30)].map((_, i) => (
+                            <circle
+                                key={i}
+                                cx={`${(i * 37 + 13) % 100}%`}
+                                cy={`${(i * 47 + 7) % 80}%`}
+                                r={i % 3 === 0 ? "2" : "1.5"}
+                                fill="currentColor"
+                                className={i % 2 === 0 ? "text-lavender animate-twinkle" : "text-cyan animate-twinkle"}
+                                style={{ animationDelay: `${i * 0.3}s` }}
+                            />
+                        ))}
+                    </svg>
                 </div>
 
                 <div className="relative container mx-auto px-6 py-24">
@@ -127,12 +177,12 @@ export function LandingPage() {
                         ].map((feature, i) => (
                             <div key={i} className="group bg-white border-2 border-gray-200 rounded-3xl p-8 hover:border-coral hover:shadow-soft-lg transition-smooth">
                                 <div className={`w-14 h-14 ${feature.color === 'coral' ? 'bg-coral/10' :
-                                        feature.color === 'cyan' ? 'bg-cyan/10' :
-                                            'bg-lavender/30'
+                                    feature.color === 'cyan' ? 'bg-cyan/10' :
+                                        'bg-lavender/30'
                                     } rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-smooth`}>
                                     <feature.icon className={`w-7 h-7 ${feature.color === 'coral' ? 'text-coral' :
-                                            feature.color === 'cyan' ? 'text-cyan' :
-                                                'text-primary'
+                                        feature.color === 'cyan' ? 'text-cyan' :
+                                            'text-primary'
                                         }`} />
                                 </div>
                                 <h3 className="text-xl font-display font-bold text-primary mb-3">{feature.title}</h3>

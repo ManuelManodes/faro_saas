@@ -126,6 +126,86 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  /* Animaciones Temáticas - Faro */
+
+  /* Estrellas parpadeantes */
+  @keyframes twinkle {
+
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.3);
+    }
+  }
+
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  /* Luz del faro girando */
+  @keyframes lighthouse-glow {
+
+    0%,
+    100% {
+      opacity: 0.5;
+      filter: brightness(1);
+    }
+
+    50% {
+      opacity: 1;
+      filter: brightness(1.5);
+    }
+  }
+
+  .animate-lighthouse-glow {
+    animation: lighthouse-glow 2s ease-in-out infinite;
+  }
+
+  /* Haz de luz giratorio */
+  @keyframes lighthouse-beam {
+    0% {
+      transform: rotate(-30deg);
+      opacity: 0.15;
+    }
+
+    50% {
+      transform: rotate(30deg);
+      opacity: 0.25;
+    }
+
+    100% {
+      transform: rotate(-30deg);
+      opacity: 0.15;
+    }
+  }
+
+  .animate-lighthouse-beam {
+    animation: lighthouse-beam 4s ease-in-out infinite;
+  }
+
+
+  /* Pulse suave para faros */
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
   /* Art Pop 90s Animation */
   @keyframes bounce-slow {
 
