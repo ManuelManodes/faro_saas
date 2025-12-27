@@ -65,13 +65,18 @@ export function AttendancePage() {
             const attendances = courseStudents.map(student => ({
                 studentId: student.id,
                 status: absentStudents.has(student.id) ? 'AUSENTE' as const : 'PRESENTE' as const,
+                arrivalTime: '',  // Campo requerido por backend
+                notes: '',        // Campo requerido por backend
             }));
 
-            await bulkCreateAttendance.mutateAsync({
+            const payload = {
                 courseId: selectedCourse.id,
                 date: format(new Date(), 'yyyy-MM-dd'),
                 attendances,
-            });
+            };
+
+            console.log('🚀 Sending to backend:', payload);
+            await bulkCreateAttendance.mutateAsync(payload);
 
             setIsSaved(true);
             setTimeout(() => setIsSaved(false), 3000);
