@@ -18,9 +18,9 @@ const QUESTIONS = [
 
 export function HollandTestPage() {
     const { user } = useAuth();
-    const { data: results = [], isLoading: testsLoading } = useHollandTests();
+    const { data: results = [] } = useHollandTests();
     const createHollandTest = useCreateHollandTest();
-    const { data: allStudents = [], isLoading: studentsLoading } = useStudents({ status: 'ACTIVO' });
+    const { data: allStudents = [] } = useStudents({ status: 'ACTIVO' });
 
     const [step, setStep] = useState(1);
     const [selectedStudentId, setSelectedStudentId] = useState("");
@@ -223,18 +223,21 @@ export function HollandTestPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y">
-                            {results.slice().reverse().map((res) => (
-                                <tr key={res.id}>
-                                    <td className="p-4">{new Date(res.testDate).toLocaleDateString()}</td>
-                                    <td className="p-4 font-medium">{res.student?.fullName || 'N/A'}</td>
-                                    <td className="p-4">
-                                        <span className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
-                                            {res.dominantTypes[0] || 'N/A'}
-                                        </span>
-                                    </td>
-                                    <td className="p-4 text-muted-foreground">{res.administeredBy}</td>
-                                </tr>
-                            ))}
+                            {results.slice().reverse().map((res) => {
+                                const student = allStudents.find(s => s.id === res.studentId);
+                                return (
+                                    <tr key={res.id}>
+                                        <td className="p-4">{new Date(res.testDate).toLocaleDateString()}</td>
+                                        <td className="p-4 font-medium">{student?.fullName || 'Estudiante no encontrado'}</td>
+                                        <td className="p-4">
+                                            <span className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
+                                                {res.dominantTypes[0] || 'N/A'}
+                                            </span>
+                                        </td>
+                                        <td className="p-4 text-muted-foreground">{res.administeredBy}</td>
+                                    </tr>
+                                );
+                            })}
                             {results.length === 0 && (
                                 <tr>
                                     <td colSpan={4} className="p-8 text-center text-muted-foreground italic">No hay registros aún.</td>
