@@ -7,9 +7,7 @@ import { Check, X, Users, Save, CheckCircle2 } from "lucide-react";
 import { cn } from "../utils";
 
 export function AttendancePage() {
-    console.log('📍 AttendancePage rendering...');
-    const { data: courses = [], isLoading: coursesLoading } = useCourses(); // Todos los cursos
-    console.log('📍 useCourses hook executed', { courses, isLoading: coursesLoading });
+    const { data: courses = [], isLoading: coursesLoading } = useCourses();
     const bulkCreateAttendance = useBulkCreateAttendance();
 
     const [selectedCourseId, setSelectedCourseId] = useState<string>("");
@@ -22,17 +20,6 @@ export function AttendancePage() {
     const { data: allStudents = [], isLoading: studentsLoading } = useStudents({ status: 'ACTIVO' });
     console.log('📍 useStudents hook executed', { allStudents, isLoading: studentsLoading });
 
-    // Show loading BEFORE computing anything
-    if (coursesLoading || studentsLoading) {
-        return (
-            <div className="flex items-center justify-center h-full">
-                <div className="text-center">
-                    <Users className="w-12 h-12 text-muted-foreground animate-pulse mx-auto mb-4" />
-                    <p className="text-muted-foreground">Cargando cursos y estudiantes...</p>
-                </div>
-            </div>
-        );
-    }
 
     // Filter courses to show only those with students
     const coursesWithStudents = courses.filter(course =>
@@ -42,8 +29,10 @@ export function AttendancePage() {
     );
 
     // DEBUG
-    console.log('🔍 DEBUG - Total courses:', courses.length, courses);
-    console.log('🔍 DEBUG - Total students:', allStudents.length, allStudents);
+    console.log('🔍 DEBUG - Total courses:', courses.length);
+    courses.forEach(c => console.log(`  Course: "${c.name}" - Grade:"${c.grade}" Section:"${c.section}"`));
+    console.log('🔍 DEBUG - Total students:', allStudents.length);
+    allStudents.forEach(s => console.log(`  Student: "${s.fullName}" - Grade:"${s.grade}" Section:"${s.section}"`));
     console.log('🔍 DEBUG - Filtered courses:', coursesWithStudents.length, coursesWithStudents);
 
     // Filter students by course grade/section
@@ -128,7 +117,7 @@ export function AttendancePage() {
                                 setIsSaved(false);
                             }}
                         >
-                            {coursesWithStudents.map(course => (
+                            {courses.map(course => (
                                 <option key={course.id} value={course.id}>
                                     {course.grade} {course.section} - {course.name}
                                 </option>
