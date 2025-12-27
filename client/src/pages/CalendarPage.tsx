@@ -1,30 +1,23 @@
 import { useState } from "react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, addMonths, subMonths, parseISO } from "date-fns";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { cn } from "../utils";
 import { ChevronLeft, ChevronRight, Plus, X, Calendar as CalendarIcon, Trash2 } from "lucide-react";
+import { useCalendarEvents, useCreateCalendarEvent, useDeleteCalendarEvent } from "../hooks/useCalendarEvents";
+import type { CreateCalendarEventInput } from "../api/types";
 
-type EventType = "meeting" | "class" | "exam";
-
-interface CalendarEvent {
-    id: string;
-    title: string;
-    date: string;
-    startTime: string;
-    endTime: string;
-    type: EventType;
-    description?: string;
-}
+type EventType = "REUNION" | "EVALUACION" | "EVENTO_INSTITUCIONAL";
 
 const TYPE_COLORS: Record<EventType, string> = {
-    meeting: "bg-blue-500/10 text-blue-600 border-blue-200 dark:border-blue-900",
-    class: "bg-green-500/10 text-green-600 border-green-200 dark:border-green-900",
-    exam: "bg-red-500/10 text-red-600 border-red-200 dark:border-red-900",
+    REUNION: "bg-blue-500/10 text-blue-600 border-blue-200 dark:border-blue-900",
+    EVALUACION: "bg-red-500/10 text-red-600 border-red-200 dark:border-red-900",
+    EVENTO_INSTITUCIONAL: "bg-green-500/10 text-green-600 border-green-200 dark:border-green-900",
 };
 
 
 export function CalendarPage() {
-    const { data: events, add, remove } = useLocalStorage<CalendarEvent>("calendar_events", []);
+    const { data: events = [], isLoading, error } = useCalendarEvents();
+    const createEvent = useCreateCalendarEvent();
+    const deleteEvent = useDeleteCalendarEvent();
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const [filter, setFilter] = useState<EventType | "all">("all");
@@ -40,26 +33,70 @@ export function CalendarPage() {
     const prevMonth = () => setCurrentDate(subMonths(currentDate, 1));
 
     // Filter Logic
-    const filteredEvents = events.filter((e) => filter === "all" || e.type === filter);
+    const filteredEvents = events.filter((e) => filter === "all" || e.eventType === filter);
+
+    // Show loading state
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                    <CalendarIcon className="w-12 h-12 text-muted-foreground animate-pulse mx-auto mb-4" />
+                    <p className="text-muted-foreground">Cargando eventos...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Show error state
+    if (error) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                    <p className="text-destructive mb-2">Error al cargar eventos</p>
+                    <p className="text-sm text-muted-foreground">{error.message}</p>
+                </div>
+            </div>
+        );
+    }
 
     // Form State
-    const [formState, setFormState] = useState<Partial<CalendarEvent>>({
-        type: "meeting",
+    const [formState, setFormState] = useState<Partial<CreateCalendarEventInput>>({
+        eventType: "REUNION" as const,
         startTime: "09:00",
         endTime: "10:00",
+        isAllDay: false,
+        status: "PROGRAMADO" as const,
+        organizerEmail: "system@colegio.cl",
+        description: "",
     });
 
     const handleDayClick = (day: Date) => {
-        setFormState(prev => ({ ...prev, date: format(day, "yyyy-MM-dd") }));
+        setFormState(prev => ({
+            ...prev,
+            startDate: format(day, "yyyy-MM-dd"),
+            endDate: format(day, "yyyy-MM-dd"),
+        }));
         setIsModalOpen(true);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (formState.title && formState.date && formState.type) {
-            add(formState as Omit<CalendarEvent, "id">);
-            setIsModalOpen(false);
-            setFormState({ type: "meeting", startTime: "09:00", endTime: "10:00" });
+        if (formState.title && formState.startDate && formState.eventType) {
+            try {
+                await createEvent.mutateAsync(formState as CreateCalendarEventInput);
+                setIsModalOpen(false);
+                setFormState({
+                    eventType: "REUNION" as const,
+                    startTime: "09:00",
+                    endTime: "10:00",
+                    isAllDay: false,
+                    status: "PROGRAMADO" as const,
+                    organizerEmail: "system@colegio.cl",
+                    description: "",
+                });
+            } catch (error) {
+                console.error("Error creating event:", error);
+            }
         }
     };
 
@@ -79,9 +116,9 @@ export function CalendarPage() {
                         onChange={(e) => setFilter(e.target.value as EventType | "all")}
                     >
                         <option value="all">Todos los eventos</option>
-                        <option value="meeting">Reuniones</option>
-                        <option value="class">Clases</option>
-                        <option value="exam">Evaluaciones</option>
+                        <option value="REUNION">Reuniones</option>
+                        <option value="EVALUACION">Evaluaciones</option>
+                        <option value="EVENTO_INSTITUCIONAL">Eventos Institucionales</option>
                     </select>
                     <button
                         onClick={() => handleDayClick(new Date())}
@@ -123,7 +160,7 @@ export function CalendarPage() {
                     ))}
 
                     {days.map((day) => {
-                        const dayEvents = filteredEvents.filter(e => isSameDay(parseISO(e.date), day));
+                        const dayEvents = filteredEvents.filter(e => isSameDay(parseISO(e.startDate), day));
                         return (
                             <div
                                 key={day.toString()}
@@ -148,7 +185,7 @@ export function CalendarPage() {
                                         <div
                                             key={event.id}
                                             onClick={(e) => { e.stopPropagation(); /* Maybe show details modal */ }}
-                                            className={cn("text-[10px] px-1.5 py-0.5 rounded border truncate font-medium", TYPE_COLORS[event.type])}
+                                            className={cn("text-[10px] px-1.5 py-0.5 rounded border truncate font-medium", TYPE_COLORS[event.eventType as EventType] || TYPE_COLORS.REUNION)}
                                             title={event.title}
                                         >
                                             {event.title}
@@ -176,7 +213,7 @@ export function CalendarPage() {
                         <div className="flex items-center justify-between p-4 border-b">
                             <h3 className="font-semibold text-lg flex items-center gap-2">
                                 <CalendarIcon className="w-5 h-5 text-primary" />
-                                {formState.date ? format(parseISO(formState.date), "dd/MM/yyyy") : "Nuevo Evento"}
+                                {formState.startDate ? format(parseISO(formState.startDate), "dd/MM/yyyy") : "Nuevo Evento"}
                             </h3>
                             <button onClick={() => setIsModalOpen(false)} className="text-muted-foreground hover:text-foreground">
                                 <X className="w-5 h-5" />
@@ -201,12 +238,12 @@ export function CalendarPage() {
                                     <label className="block text-sm font-medium mb-1">Tipo</label>
                                     <select
                                         className="w-full p-2 rounded-lg border bg-background input-field outline-none"
-                                        value={formState.type}
-                                        onChange={(e) => setFormState(prev => ({ ...prev, type: e.target.value as EventType }))}
+                                        value={formState.eventType}
+                                        onChange={(e) => setFormState(prev => ({ ...prev, eventType: e.target.value as EventType }))}
                                     >
-                                        <option value="meeting">Reunión</option>
-                                        <option value="class">Clase</option>
-                                        <option value="exam">Evaluación</option>
+                                        <option value="REUNION">Reunión</option>
+                                        <option value="EVALUACION">Evaluación</option>
+                                        <option value="EVENTO_INSTITUCIONAL">Evento Institucional</option>
                                     </select>
                                 </div>
                                 <div>
@@ -215,8 +252,8 @@ export function CalendarPage() {
                                         type="date"
                                         required
                                         className="w-full p-2 rounded-lg border bg-background input-field outline-none"
-                                        value={formState.date || ""}
-                                        onChange={(e) => setFormState(prev => ({ ...prev, date: e.target.value }))}
+                                        value={formState.startDate || ""}
+                                        onChange={(e) => setFormState(prev => ({ ...prev, startDate: e.target.value, endDate: e.target.value }))}
                                     />
                                 </div>
                             </div>
@@ -260,24 +297,24 @@ export function CalendarPage() {
                             </div>
                         </form>
 
-                        {/* List existing events for this day just for quick delete context */}
-                        {formState.date && (
+                        {/* List existing events for this day */}
+                        {formState.startDate && (
                             <div className="p-4 bg-muted/20 border-t max-h-[150px] overflow-y-auto">
                                 <h4 className="text-xs font-semibold uppercase text-muted-foreground mb-2">Eventos del día</h4>
                                 <div className="space-y-2">
-                                    {events.filter(e => e.date === formState.date).map(event => (
+                                    {events.filter(e => e.startDate === formState.startDate).map(event => (
                                         <div key={event.id} className="flex items-center justify-between text-sm p-2 rounded bg-card border">
                                             <div className="flex items-center gap-2 overflow-hidden">
-                                                <div className={`w-2 h-2 rounded-full ${TYPE_COLORS[event.type].split(' ')[0].replace('/10', '')}`} />
+                                                <div className={`w-2 h-2 rounded-full ${TYPE_COLORS[event.eventType as EventType]?.split(' ')[0].replace('/10', '') || 'bg-blue-500'}`} />
                                                 <span className="truncate">{event.title}</span>
-                                                <span className="text-xs text-muted-foreground ml-auto">{event.startTime}</span>
+                                                <span className="text-xs text-muted-foreground ml-auto">{event.startTime || 'Todo el día'}</span>
                                             </div>
-                                            <button onClick={() => remove(event.id)} className="text-destructive hover:bg-destructive/10 p-1 rounded">
+                                            <button onClick={() => deleteEvent.mutateAsync(event.id)} className="text-destructive hover:bg-destructive/10 p-1 rounded">
                                                 <Trash2 className="w-3 h-3" />
                                             </button>
                                         </div>
                                     ))}
-                                    {events.filter(e => e.date === formState.date).length === 0 && (
+                                    {events.filter(e => e.startDate === formState.startDate).length === 0 && (
                                         <p className="text-xs text-muted-foreground italic">No hay eventos para este día.</p>
                                     )}
                                 </div>
