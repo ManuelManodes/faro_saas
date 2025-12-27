@@ -35,7 +35,7 @@ export function AttendancePage() {
     console.log('🔍 DEBUG - Filtered courses:', coursesWithStudents.length, coursesWithStudents);
 
     // Filter students by course grade/section
-    const selectedCourse = coursesWithStudents.find(c => c.id === selectedCourseId);
+
     const courseStudents = allStudents; // Mostrar TODOS temporalmente
 
     // Set first course as selected when courses load
