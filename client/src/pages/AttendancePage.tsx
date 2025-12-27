@@ -42,10 +42,10 @@ export function AttendancePage() {
 
     // Set first course as selected when courses load
     useEffect(() => {
-        if (coursesWithStudents.length > 0 && !selectedCourseId) {
-            setSelectedCourseId(coursesWithStudents[0].id);
+        if (courses.length > 0 && !selectedCourseId) {
+            setSelectedCourseId(courses[0].id);
         }
-    }, [coursesWithStudents, selectedCourseId]);
+    }, [courses, selectedCourseId]);
 
     const toggleAttendance = (studentId: string) => {
         const newAbsent = new Set(absentStudents);
