@@ -80,8 +80,15 @@ export function AttendancePage() {
 
             setIsSaved(true);
             setTimeout(() => setIsSaved(false), 3000);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error saving attendance:", error);
+
+            // Mostrar mensaje específico si ya existe registro
+            if (error?.response?.status === 400 || error?.response?.data?.message?.includes('registro')) {
+                alert(`⚠️ Ya existe un registro de asistencia para este curso en la fecha ${format(new Date(), 'dd/MM/yyyy')}.\n\nNo se pueden duplicar registros para la misma fecha.`);
+            } else {
+                alert('❌ Error al guardar la asistencia. Por favor, intenta de nuevo.');
+            }
         }
     };
 
