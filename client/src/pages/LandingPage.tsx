@@ -68,21 +68,23 @@ export function LandingPage() {
                     </div>
 
 
-                    {/* Paisaje Montañoso Low-Poly - 5 capas */}
-                    <svg className="absolute bottom-0 left-0 w-full z-10" height="300" viewBox="0 0 1200 300" preserveAspectRatio="none">
-                        <polygon points="0,300 0,200 150,180 300,220 450,190 600,230 750,200 900,240 1050,210 1200,250 1200,300" fill="#BBB9ED" opacity="0.15" />
-                        <polygon points="0,300 0,220 200,190 400,230 600,180 800,220 1000,200 1200,240 1200,300" fill="#BBB9ED" opacity="0.25" />
-                        <polygon points="100,300 100,240 300,210 500,250 700,220 900,260 1100,230 1200,270 1200,300" fill="#17B1C1" opacity="0.12" />
-                        <polygon points="0,300 50,250 200,260 350,240 500,270 650,250 800,280 950,260 1100,290 1200,280 1200,300" fill="#181144" opacity="0.3" />
-                        <polygon points="150,300 150,270 300,250 450,270 600,240 750,260 900,250 1050,270 1200,260 1200,300" fill="#F96C45" opacity="0.18" />
-                        <polygon points="0,300 100,280 250,270 400,290 550,260 700,285 850,275 1000,295 1200,285 1200,300" fill="#F96C45" opacity="0.25" />
-                        <polygon points="200,300 200,285 350,275 500,290 650,270 800,285 950,280 1100,295 1200,290 1200,300" fill="#181144" opacity="0.4" />
-                        <polygon points="0,300 50,295 150,290 250,295 350,288 450,293 550,290 650,295 750,292 850,296 950,293 1050,297 1150,294 1200,298 1200,300" fill="#181144" opacity="0.5" />
+                    {/* Montaña/Isla Geométrica - Sostiene faro derecho */}
+                    <svg className="absolute bottom-0 right-0 w-1/3 z-10" height="400" viewBox="0 0 400 400" preserveAspectRatio="xMaxYMax meet">
+                        {/* Isla low-poly - púrpura/coral/cyan */}
+                        <polygon points="350,400 300,300 250,250 200,280 150,320 100,350 50,380 0,400" fill="#181144" opacity="0.4" />
+                        <polygon points="300,300 280,260 240,220 200,240 160,270 140,300" fill="#F96C45" opacity="0.25" />
+                        <polygon points="280,260 260,200 240,160 220,190 200,230" fill="#181144" opacity="0.5" />
+                        <polygon points="260,200 250,150 240,130 230,160" fill="#F96C45" opacity="0.3" />
+                        {/* Pico donde posa el faro */}
+                        <polygon points="250,150 245,120 240,110 235,130 230,150" fill="#17B1C1" opacity="0.2" />
                     </svg>
 
-                    <svg className="absolute bottom-0 left-0 w-full opacity-10 z-10" height="100" viewBox="0 0 1000 100" preserveAspectRatio="none">
-                        <path d="M0,50 Q250,20 500,50 T1000,50 L1000,100 L0,100 Z" fill="currentColor" className="text-cyan" />
+                    {/* Mar con ondas */}
+                    <svg className="absolute bottom-0 left-0 w-full opacity-12 z-10" height="120" viewBox="0 0 1000 120" preserveAspectRatio="none">
+                        <path d="M0,60 Q250,30 500,60 T1000,60 L1000,120 L0,120 Z" fill="#17B1C1" opacity="0.15" />
+                        <path d="M0,80 Q200,60 400,80 T800,80 Q900,70 1000,85 L1000,120 L0,120 Z" fill="#181144" opacity="0.3" />
                     </svg>
+
 
 
                     {/* Estrellas parpadeantes - Cielo nocturno */}
