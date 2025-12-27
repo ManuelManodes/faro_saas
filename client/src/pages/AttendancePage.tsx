@@ -7,7 +7,9 @@ import { Check, X, Users, Save, CheckCircle2 } from "lucide-react";
 import { cn } from "../utils";
 
 export function AttendancePage() {
+    console.log('📍 AttendancePage rendering...');
     const { data: courses = [], isLoading: coursesLoading } = useCourses(); // Todos los cursos
+    console.log('📍 useCourses hook executed', { courses, isLoading: coursesLoading });
     const bulkCreateAttendance = useBulkCreateAttendance();
 
     const [selectedCourseId, setSelectedCourseId] = useState<string>("");
@@ -18,6 +20,19 @@ export function AttendancePage() {
 
     // Load students for selected course
     const { data: allStudents = [], isLoading: studentsLoading } = useStudents({ status: 'ACTIVO' });
+    console.log('📍 useStudents hook executed', { allStudents, isLoading: studentsLoading });
+
+    // Show loading BEFORE computing anything
+    if (coursesLoading || studentsLoading) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                    <Users className="w-12 h-12 text-muted-foreground animate-pulse mx-auto mb-4" />
+                    <p className="text-muted-foreground">Cargando cursos y estudiantes...</p>
+                </div>
+            </div>
+        );
+    }
 
     // Filter courses to show only those with students
     const coursesWithStudents = courses.filter(course =>
@@ -25,6 +40,11 @@ export function AttendancePage() {
             student.grade === course.grade && student.section === course.section
         )
     );
+
+    // DEBUG
+    console.log('🔍 DEBUG - Total courses:', courses.length, courses);
+    console.log('🔍 DEBUG - Total students:', allStudents.length, allStudents);
+    console.log('🔍 DEBUG - Filtered courses:', coursesWithStudents.length, coursesWithStudents);
 
     // Filter students by course grade/section
     const selectedCourse = coursesWithStudents.find(c => c.id === selectedCourseId);
@@ -74,6 +94,7 @@ export function AttendancePage() {
         }
     };
 
+    // Show loading state AFTER all hooks
     if (coursesLoading || studentsLoading) {
         return (
             <div className="flex items-center justify-center h-full">
