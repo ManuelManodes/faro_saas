@@ -35,9 +35,9 @@ export function LandingPage() {
                             {/* Luz brillante */}
                             <circle cx="50" cy="28" r="6" fill="currentColor" className="text-lavender animate-lighthouse-glow" />
 
-                            {/* Haz de luz giratorio */}
+                            {/* Haz de luz giratorio - MÁS VISIBLE */}
                             <g className="origin-center animate-lighthouse-beam" style={{ transformOrigin: '50px 28px' }}>
-                                <path d="M50,28 L80,10 L80,46 Z" fill="currentColor" className="text-lavender" opacity="0.15" />
+                                <path d="M50,28 L90,5 L90,51 Z" fill="currentColor" className="text-lavender" opacity="0.4" />
                             </g>
                         </svg>
                     </div>
@@ -60,12 +60,29 @@ export function LandingPage() {
                             {/* Luz */}
                             <circle cx="35" cy="23" r="4" fill="currentColor" className="text-coral animate-lighthouse-glow" style={{ animationDelay: '1.5s' }} />
 
-                            {/* Haz de luz */}
+                            {/* Haz de luz - MÁS VISIBLE */}
                             <g className="animate-lighthouse-beam" style={{ transformOrigin: '35px 23px', animationDelay: '1.5s' }}>
-                                <path d="M35,23 L55,10 L55,36 Z" fill="currentColor" className="text-coral" opacity="0.12" />
+                                <path d="M35,23 L60,7 L60,39 Z" fill="currentColor" className="text-coral" opacity="0.35" />
                             </g>
                         </svg>
                     </div>
+
+                    {/* Montaña Hexagonal - Base Elegante */}
+                    <svg className="absolute bottom-0 left-0 w-full" height="200" viewBox="0 0 1000 200" preserveAspectRatio="none">
+                        {/* Silueta de montaña suave */}
+                        <path d="M0,200 L0,120 Q200,80 400,100 T800,90 L1000,110 L1000,200 Z"
+                            fill="currentColor" className="text-lavender" opacity="0.12" />
+
+                        {/* Patrón hexagonal muy sutil */}
+                        <defs>
+                            <pattern id="hexagons" x="0" y="0" width="40" height="35" patternUnits="userSpaceOnUse">
+                                <polygon points="20,0 30,10 30,25 20,35 10,25 10,10"
+                                    stroke="currentColor" strokeWidth="0.5" fill="none"
+                                    className="text-primary" opacity="0.08" />
+                            </pattern>
+                        </defs>
+                        <rect y="100" width="100%" height="100" fill="url(#hexagons)" />
+                    </svg>
 
                     {/* Ondas del mar */}
                     <svg className="absolute bottom-0 left-0 w-full opacity-10" height="100" viewBox="0 0 1000 100" preserveAspectRatio="none">
