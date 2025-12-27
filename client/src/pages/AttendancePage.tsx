@@ -19,8 +19,15 @@ export function AttendancePage() {
     // Load students for selected course
     const { data: allStudents = [], isLoading: studentsLoading } = useStudents({ status: 'ACTIVO' });
 
+    // Filter courses to show only those with students
+    const coursesWithStudents = courses.filter(course =>
+        allStudents.some(student =>
+            student.grade === course.grade && student.section === course.section
+        )
+    );
+
     // Filter students by course grade/section
-    const selectedCourse = courses.find(c => c.id === selectedCourseId);
+    const selectedCourse = coursesWithStudents.find(c => c.id === selectedCourseId);
     const courseStudents = selectedCourse
         ? allStudents.filter(s => s.grade === selectedCourse.grade && s.section === selectedCourse.section)
         : [];
