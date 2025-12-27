@@ -1,29 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { useAuth } from "../context/AuthContext";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { COURSES } from "../data/mock";
+import { useCourses } from "../hooks/useCourses";
+import { useStudents } from "../hooks/useStudents";
+import { useBulkCreateAttendance } from "../hooks/useAttendance";
 import { Check, X, Users, Save, CheckCircle2 } from "lucide-react";
 import { cn } from "../utils";
 
-interface AttendanceRecord {
-    id: string;
-    date: string; // ISO DateTime
-    courseId: string;
-    teacherId: string;
-    absentStudentIds: string[];
-    totalStudents: number;
-}
-
 export function AttendancePage() {
     const { user } = useAuth();
-    const { add } = useLocalStorage<AttendanceRecord>("attendance_records", []);
+    const { data: courses = [], isLoading: coursesLoading } = useCourses({ status: 'ACTIVO' });
+    const bulkCreateAttendance = useBulkCreateAttendance();
 
-    const [selectedCourseId, setSelectedCourseId] = useState(COURSES[0].id);
+    const [selectedCourseId, setSelectedCourseId] = useState<string>("");
     const [absentStudents, setAbsentStudents] = useState<Set<string>>(new Set());
     const [isSaved, setIsSaved] = useState(false);
 
-    const selectedCourse = COURSES.find(c => c.id === selectedCourseId);
+    // Set first course as selected when courses load
+    useEffect(() => {
+        if (courses.length > 0 && !selectedCourseId) {
+            setSelectedCourseId(courses[0].id);
+        }
+    }, [courses, selectedCourseId]);
+
+    // Load students for selected course
+    const { data: allStudents = [], isLoading: studentsLoading } = useStudents({ status: 'ACTIVO' });
+
+    // Filter students by course grade/section
+    const selectedCourse = courses.find(c => c.id === selectedCourseId);
+    const courseStudents = selectedCourse
+        ? allStudents.filter(s => s.grade === selectedCourse.grade && s.section === selectedCourse.section)
+        : [];
 
     const toggleAttendance = (studentId: string) => {
         const newAbsent = new Set(absentStudents);
@@ -36,21 +43,39 @@ export function AttendancePage() {
         setIsSaved(false);
     };
 
-    const handleSave = () => {
-        if (!selectedCourse) return;
+    const handleSave = async () => {
+        if (!selectedCourse || courseStudents.length === 0) return;
 
-        add({
-            date: new Date().toISOString(),
-            courseId: selectedCourse.id,
-            teacherId: user?.email || "unknown",
-            absentStudentIds: Array.from(absentStudents),
-            totalStudents: selectedCourse.students.length
-        });
+        try {
+            // Create attendance records for all students
+            const attendances = courseStudents.map(student => ({
+                studentId: student.id,
+                status: absentStudents.has(student.id) ? 'AUSENTE' as const : 'PRESENTE' as const,
+            }));
 
-        setIsSaved(true);
-        // Optional: Reset or Show Feedback
-        setTimeout(() => setIsSaved(false), 3000);
+            await bulkCreateAttendance.mutateAsync({
+                courseId: selectedCourse.id,
+                date: format(new Date(), 'yyyy-MM-dd'),
+                attendances,
+            });
+
+            setIsSaved(true);
+            setTimeout(() => setIsSaved(false), 3000);
+        } catch (error) {
+            console.error("Error saving attendance:", error);
+        }
     };
+
+    if (coursesLoading || studentsLoading) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                    <Users className="w-12 h-12 text-muted-foreground animate-pulse mx-auto mb-4" />
+                    <p className="text-muted-foreground">Cargando cursos y estudiantes...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="space-y-6 max-w-4xl mx-auto">
@@ -74,9 +99,9 @@ export function AttendancePage() {
                                 setIsSaved(false);
                             }}
                         >
-                            {COURSES.map(course => (
+                            {courses.map(course => (
                                 <option key={course.id} value={course.id}>
-                                    {course.grad} - {course.name}
+                                    {course.grade} {course.section} - {course.name}
                                 </option>
                             ))}
                         </select>
@@ -88,12 +113,12 @@ export function AttendancePage() {
                 <div className="p-4 border-b bg-muted/30 flex justify-between items-center">
                     <h2 className="font-semibold text-lg">Lista de Estudiantes</h2>
                     <div className="text-sm text-muted-foreground">
-                        <span className="font-medium text-foreground">{selectedCourse?.students.length}</span> estudiantes matriculados
+                        <span className="font-medium text-foreground">{courseStudents.length}</span> estudiantes matriculados
                     </div>
                 </div>
 
                 <div className="divide-y">
-                    {selectedCourse?.students.map((student) => {
+                    {courseStudents.map((student) => {
                         const isAbsent = absentStudents.has(student.id);
                         return (
                             <div
@@ -108,10 +133,10 @@ export function AttendancePage() {
                                         "w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm",
                                         isAbsent ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary"
                                     )}>
-                                        {student.name.charAt(0)}
+                                        {student.firstName.charAt(0)}
                                     </div>
                                     <div>
-                                        <p className="font-medium">{student.name}</p>
+                                        <p className="font-medium">{student.fullName}</p>
                                         <p className="text-xs text-muted-foreground">
                                             {isAbsent ? "Ausente" : "Presente"}
                                         </p>
