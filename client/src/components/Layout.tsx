@@ -23,39 +23,38 @@ export function Layout({ children }: LayoutProps) {
     }, []);
 
     return (
-        <div className="min-h-screen bg-background text-foreground font-sans transition-colors duration-300">
-            <header className="border-b border-border sticky top-0 z-50 bg-background/80 backdrop-blur-sm">
+        <div className="min-h-screen bg-background text-foreground font-body transition-colors duration-300">
+            <header className="border-b border-primary-600 sticky top-0 z-50 bg-primary text-white shadow-soft">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-4">
                     {/* Logo */}
                     <div className="flex items-center gap-2 shrink-0">
-                        <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                            <span className="text-primary-foreground font-bold text-lg">V</span>
+                        <div className="w-8 h-8 bg-coral rounded-full flex items-center justify-center shadow-sm">
+                            <span className="text-white font-display font-bold text-lg">F</span>
                         </div>
-                        <span className="font-semibold text-lg tracking-tight hidden md:inline-block">Velvet Dashboard</span>
+                        <span className="font-display font-semibold text-lg tracking-tight hidden md:inline-block">Faro</span>
                     </div>
 
                     {/* Search Bar - Responsive */}
                     <div className="flex-1 max-w-md mx-2 md:mx-4">
                         <div className="relative group">
-                            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
+                            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-white/60 group-focus-within:text-white transition-colors" />
                             <input
                                 ref={searchInputRef}
                                 type="text"
-                                placeholder="Search..."
+                                placeholder="Buscar..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full h-9 pl-9 pr-8 sm:pr-12 rounded-md border border-input bg-background/50 focus:bg-background text-sm shadow-sm transition-all file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                className="w-full h-9 pl-9 pr-8 sm:pr-12 rounded-md border border-white/20 bg-white/10 focus:bg-white/20 text-sm text-white placeholder:text-white/60 shadow-sm transition-smooth focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan"
                             />
                             <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
                                 {searchTerm && (
                                     <button
                                         onClick={() => setSearchTerm('')}
-                                        className="p-0.5 hover:bg-accent rounded-full text-muted-foreground hover:text-foreground transition-colors mr-1"
-                                    >
+                                        className="p-0.5 hover:bg-white/20 rounded-full text-white/60 hover:text-white transition-colors mr-1">
                                         <X className="w-3 h-3" />
                                     </button>
                                 )}
-                                <kbd className="hidden sm:inline-flex h-5 items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                                <kbd className="hidden sm:inline-flex h-5 items-center gap-1 rounded border border-white/30 bg-white/10 px-1.5 font-mono text-[10px] font-medium text-white/80">
                                     <span className="text-xs">⌘</span>K
                                 </kbd>
                             </div>
@@ -66,19 +65,19 @@ export function Layout({ children }: LayoutProps) {
                     <div className="flex items-center gap-3 md:gap-4 shrink-0">
                         <button
                             onClick={toggleTheme}
-                            className="p-2 rounded-full hover:bg-accent transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
+                            className="p-2 rounded-full hover:bg-white/10 transition-smooth focus:outline-none focus:ring-2 focus:ring-cyan"
                             aria-label="Toggle theme"
                         >
                             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                         </button>
 
-                        <div className="flex items-center gap-2 pl-3 md:pl-4 border-l border-border">
+                        <div className="flex items-center gap-2 pl-3 md:pl-4 border-l border-white/20">
                             <div className="flex flex-col items-end hidden md:flex">
-                                <span className="text-sm font-medium">Manuel Manodes</span>
-                                <span className="text-xs text-muted-foreground">Admin</span>
+                                <span className="text-sm font-medium font-display">Manuel Manodes</span>
+                                <span className="text-xs text-white/70">Admin</span>
                             </div>
-                            <div className="w-8 h-8 md:w-9 md:h-9 bg-secondary rounded-full flex items-center justify-center border border-border">
-                                <User className="w-4 h-4 md:w-5 md:h-5 text-secondary-foreground" />
+                            <div className="w-8 h-8 md:w-9 md:h-9 bg-cyan rounded-full flex items-center justify-center border border-white/30">
+                                <User className="w-4 h-4 md:w-5 md:h-5 text-white" />
                             </div>
                         </div>
                     </div>
