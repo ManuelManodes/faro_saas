@@ -18,42 +18,42 @@ export function DashboardPage() {
             label: "Estudiantes Activos",
             value: studentsLoading ? "..." : (students?.length || 0).toString(),
             icon: Users,
-            color: "text-blue-500",
-            bg: "bg-blue-500/10"
+            color: "text-coral",
+            bg: "bg-coral/10"
         },
         {
             label: "Cursos Activos",
             value: coursesLoading ? "..." : (courses?.length || 0).toString(),
             icon: BookOpen,
-            color: "text-green-500",
-            bg: "bg-green-500/10"
+            color: "text-cyan",
+            bg: "bg-cyan/10"
         },
         {
             label: "Próximos Eventos",
             value: eventsLoading ? "..." : (upcomingEvents?.length || 0).toString(),
             icon: CalendarIcon,
-            color: "text-purple-500",
-            bg: "bg-purple-500/10"
+            color: "text-primary",
+            bg: "bg-lavender/30"
         },
     ];
 
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="text-3xl font-bold tracking-tight">Hola, {user?.name.split(" ")[0]}</h1>
-                <p className="text-muted-foreground mt-2">Bienvenido al panel de control de EduSaaS. Aquí tienes un resumen de hoy.</p>
+                <h1 className="text-4xl font-display font-bold tracking-tight text-primary">Hola, {user?.name.split(" ")[0]} 👋</h1>
+                <p className="text-muted-foreground mt-2 font-body">Bienvenido al panel de control de Faro. Aquí tienes un resumen de hoy.</p>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {stats.map((stat, index) => (
-                    <div key={index} className="p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+                    <div key={index} className="p-6 rounded-xl border bg-card text-card-foreground shadow-soft transition-smooth hover:shadow-soft-lg">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
-                                <div className="text-2xl font-bold mt-2">{stat.value}</div>
+                                <div className="text-3xl font-display font-bold mt-2 text-primary">{stat.value}</div>
                             </div>
                             <div className={`p-3 rounded-full ${stat.bg}`}>
-                                <stat.icon className={`w-5 h-5 ${stat.color}`} />
+                                <stat.icon className={`w-6 h-6 ${stat.color}`} />
                             </div>
                         </div>
                     </div>
@@ -61,9 +61,9 @@ export function DashboardPage() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-                <div className="p-6 rounded-xl border bg-card shadow-sm">
+                <div className="p-6 rounded-xl border bg-card shadow-soft">
                     <div className="flex items-center justify-between mb-4">
-                        <h3 className="font-semibold">Accesos Rápidos</h3>
+                        <h3 className="font-display font-semibold text-lg text-primary">Accesos Rápidos</h3>
                     </div>
                     <div className="grid gap-2">
                         {[
@@ -75,19 +75,20 @@ export function DashboardPage() {
                             <Link
                                 key={link.to}
                                 to={link.to}
-                                className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted transition-colors group"
+                                className="flex items-center justify-between p-3 rounded-lg border hover:border-coral hover:bg-coral/5 transition-smooth group"
                             >
-                                <span className="font-medium">{link.label}</span>
-                                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                                <span className="font-medium group-hover:text-coral transition-smooth">{link.label}</span>
+                                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-coral transition-smooth" />
                             </Link>
                         ))}
                     </div>
                 </div>
 
-                <div className="p-6 rounded-xl border bg-card shadow-sm">
+
+                <div className="p-6 rounded-xl border bg-card shadow-soft">
                     <div className="flex items-center justify-between mb-4">
-                        <h3 className="font-semibold">Próximos Eventos</h3>
-                        <Link to="/app/calendar" className="text-sm text-blue-600 hover:underline">
+                        <h3 className="font-display font-semibold text-lg text-primary">Próximos Eventos</h3>
+                        <Link to="/app/calendar" className="text-sm text-cyan hover:text-cyan-600 transition-smooth font-medium">
                             Ver todos
                         </Link>
                     </div>

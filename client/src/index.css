@@ -85,13 +85,15 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
+    font-family: 'Red Hat Text', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 /* Equiem Design System Utilities */
 @layer utilities {
+
   /* Gradients */
   .bg-gradient-lavender {
     background: linear-gradient(135deg, rgba(187, 185, 237, 0.3) 0%, rgba(255, 255, 255, 1) 100%);
