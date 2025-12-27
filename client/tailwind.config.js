@@ -21,12 +21,37 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#181144",
+          50: "#F5F5FF",
+          100: "#EBEBFF",
+          500: "#181144",
+          600: "#12102E",
+          900: "#0A0818",
+          foreground: "#FFFFFF",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        coral: {
+          DEFAULT: "#F96C45",
+          50: "#FEF2EF",
+          100: "#FCE5DF",
+          500: "#F96C45",
+          600: "#F74820",
+        },
+        cyan: {
+          DEFAULT: "#17B1C1",
+          50: "#E6F7F9",
+          100: "#CCEEF2",
+          500: "#17B1C1",
+          600: "#128E9A",
+        },
+        lavender: {
+          DEFAULT: "#BBB9ED",
+          50: "#F7F7FD",
+          100: "#EFEFF8",
+          500: "#BBB9ED",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -48,6 +73,15 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        display: ['"Red Hat Display"', 'sans-serif'],
+        body: ['"Red Hat Text"', 'sans-serif'],
+        sans: ['"Red Hat Text"', 'sans-serif'],
+      },
+      boxShadow: {
+        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+        'soft-lg': '0 10px 40px -10px rgba(0, 0, 0, 0.1)',
       },
       borderRadius: {
         lg: "var(--radius)",

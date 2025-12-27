@@ -85,7 +85,39 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Equiem Design System Utilities */
+@layer utilities {
+  /* Gradients */
+  .bg-gradient-lavender {
+    background: linear-gradient(135deg, rgba(187, 185, 237, 0.3) 0%, rgba(255, 255, 255, 1) 100%);
+  }
+
+  .bg-gradient-lavender-dark {
+    background: linear-gradient(135deg, rgba(187, 185, 237, 0.15) 0%, rgba(24, 17, 68, 1) 100%);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(24, 17, 68, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
