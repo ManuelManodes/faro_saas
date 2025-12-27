@@ -7,7 +7,7 @@ import { Check, X, Users, Save, CheckCircle2 } from "lucide-react";
 import { cn } from "../utils";
 
 export function AttendancePage() {
-    const { data: courses = [], isLoading: coursesLoading } = useCourses({ status: 'ACTIVO' });
+    const { data: courses = [], isLoading: coursesLoading } = useCourses(); // Todos los cursos
     const bulkCreateAttendance = useBulkCreateAttendance();
 
     const [selectedCourseId, setSelectedCourseId] = useState<string>("");
