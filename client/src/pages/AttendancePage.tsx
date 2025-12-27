@@ -14,12 +14,7 @@ export function AttendancePage() {
     const [absentStudents, setAbsentStudents] = useState<Set<string>>(new Set());
     const [isSaved, setIsSaved] = useState(false);
 
-    // Set first course as selected when courses load
-    useEffect(() => {
-        if (courses.length > 0 && !selectedCourseId) {
-            setSelectedCourseId(courses[0].id);
-        }
-    }, [courses, selectedCourseId]);
+
 
     // Load students for selected course
     const { data: allStudents = [], isLoading: studentsLoading } = useStudents({ status: 'ACTIVO' });
@@ -29,6 +24,13 @@ export function AttendancePage() {
     const courseStudents = selectedCourse
         ? allStudents.filter(s => s.grade === selectedCourse.grade && s.section === selectedCourse.section)
         : [];
+
+    // Set first course as selected when courses load
+    useEffect(() => {
+        if (coursesWithStudents.length > 0 && !selectedCourseId) {
+            setSelectedCourseId(coursesWithStudents[0].id);
+        }
+    }, [coursesWithStudents, selectedCourseId]);
 
     const toggleAttendance = (studentId: string) => {
         const newAbsent = new Set(absentStudents);
@@ -98,7 +100,7 @@ export function AttendancePage() {
                                 setIsSaved(false);
                             }}
                         >
-                            {courses.map(course => (
+                            {coursesWithStudents.map(course => (
                                 <option key={course.id} value={course.id}>
                                     {course.grade} {course.section} - {course.name}
                                 </option>
