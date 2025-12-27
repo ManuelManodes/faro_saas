@@ -23,6 +23,17 @@ export function CalendarPage() {
     const [filter, setFilter] = useState<EventType | "all">("all");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // Form State - DEBE estar antes de los returns condicionales
+    const [formState, setFormState] = useState<Partial<CreateCalendarEventInput>>({
+        eventType: "REUNION" as const,
+        startTime: "09:00",
+        endTime: "10:00",
+        isAllDay: false,
+        status: "PROGRAMADO" as const,
+        organizerEmail: "system@colegio.cl",
+        description: "",
+    });
+
     // Calendar Logic
     const monthStart = startOfMonth(currentDate);
     const monthEnd = endOfMonth(currentDate);
@@ -34,41 +45,6 @@ export function CalendarPage() {
 
     // Filter Logic
     const filteredEvents = events.filter((e) => filter === "all" || e.eventType === filter);
-
-    // Show loading state
-    if (isLoading) {
-        return (
-            <div className="flex items-center justify-center h-full">
-                <div className="text-center">
-                    <CalendarIcon className="w-12 h-12 text-muted-foreground animate-pulse mx-auto mb-4" />
-                    <p className="text-muted-foreground">Cargando eventos...</p>
-                </div>
-            </div>
-        );
-    }
-
-    // Show error state
-    if (error) {
-        return (
-            <div className="flex items-center justify-center h-full">
-                <div className="text-center">
-                    <p className="text-destructive mb-2">Error al cargar eventos</p>
-                    <p className="text-sm text-muted-foreground">{error.message}</p>
-                </div>
-            </div>
-        );
-    }
-
-    // Form State
-    const [formState, setFormState] = useState<Partial<CreateCalendarEventInput>>({
-        eventType: "REUNION" as const,
-        startTime: "09:00",
-        endTime: "10:00",
-        isAllDay: false,
-        status: "PROGRAMADO" as const,
-        organizerEmail: "system@colegio.cl",
-        description: "",
-    });
 
     const handleDayClick = (day: Date) => {
         setFormState(prev => ({
@@ -99,6 +75,30 @@ export function CalendarPage() {
             }
         }
     };
+
+    // Show loading state - DESPUÉS de todos los hooks
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                    <CalendarIcon className="w-12 h-12 text-muted-foreground animate-pulse mx-auto mb-4" />
+                    <p className="text-muted-foreground">Cargando eventos...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Show error state - DESPUÉS de todos los hooks
+    if (error) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                    <p className="text-destructive mb-2">Error al cargar eventos</p>
+                    <p className="text-sm text-muted-foreground">{error.message}</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="space-y-6 h-full flex flex-col">
