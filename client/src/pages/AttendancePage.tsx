@@ -16,9 +16,8 @@ export function AttendancePage() {
 
 
 
-    // Load students for selected course
+    // Load all students (mostrar todos sin filtrar temporalmente)
     const { data: allStudents = [], isLoading: studentsLoading } = useStudents({ status: 'ACTIVO' });
-    console.log('📍 useStudents hook executed', { allStudents, isLoading: studentsLoading });
 
 
     // Filter courses to show only those with students
