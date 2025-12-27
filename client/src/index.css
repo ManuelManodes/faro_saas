@@ -37,44 +37,43 @@
 
 
   .dark {
-    /* Equiem Dark Mode - Mejor contraste */
-    --background: 252 50% 5%;
-    /* Púrpura muy muy oscuro - casi negro */
+    /* Equiem Dark Mode - Contraste Máximo */
+    --background: 252 40% 4%;
+    /* Casi negro puro */
     --foreground: 0 0% 98%;
-    /* Texto casi blanco */
+    /* Blanco casi puro */
 
-    /* Primary: Púrpura más claro para mejor contraste */
-    --primary: 252 70% 70%;
-    /* Púrpura lavanda claro */
-    --primary-foreground: 252 50% 10%;
+    /* Primary: Lavanda muy claro para alto contraste */
+    --primary: 252 80% 75%;
+    --primary-foreground: 252 50% 5%;
 
-    /* Secondary: Coral brillante */
-    --secondary: 17 100% 70%;
-    --secondary-foreground: 0 0% 10%;
+    /* Secondary: Coral muy brillante */
+    --secondary: 17 100% 75%;
+    --secondary-foreground: 0 0% 5%;
 
-    --card: 252 40% 8%;
-    /* Cards más oscuras */
-    --card-foreground: 0 0% 95%;
+    --card: 252 30% 10%;
+    /* Cards un poco más claras */
+    --card-foreground: 0 0% 98%;
 
-    --popover: 252 40% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 252 30% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    --muted: 252 30% 15%;
-    /* Muted más claro */
-    --muted-foreground: 0 0% 75%;
-    /* Texto muted más legible */
+    --muted: 252 20% 20%;
+    /* Muted mucho más claro */
+    --muted-foreground: 0 0% 85%;
+    /* Texto muted MUY legible */
 
-    --accent: 189 85% 55%;
-    /* Cyan brillante */
+    --accent: 189 90% 60%;
+    /* Cyan super brillante */
     --accent-foreground: 0 0% 5%;
 
-    --destructive: 0 70% 50%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 252 30% 25%;
-    /* Bordes más visibles */
-    --input: 252 30% 20%;
-    --ring: 189 85% 55%;
+    --border: 252 20% 30%;
+    /* Bordes muy visibles */
+    --input: 252 20% 25%;
+    --ring: 189 90% 60%;
   }
 }
 
