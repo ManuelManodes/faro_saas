@@ -67,27 +67,23 @@ export function LandingPage() {
                         </svg>
                     </div>
 
-                    {/* Montaña Hexagonal - Base Elegante */}
-                    <svg className="absolute bottom-0 left-0 w-full" height="200" viewBox="0 0 1000 200" preserveAspectRatio="none">
-                        {/* Silueta de montaña suave */}
-                        <path d="M0,200 L0,120 Q200,80 400,100 T800,90 L1000,110 L1000,200 Z"
-                            fill="currentColor" className="text-lavender" opacity="0.12" />
 
-                        {/* Patrón hexagonal muy sutil */}
-                        <defs>
-                            <pattern id="hexagons" x="0" y="0" width="40" height="35" patternUnits="userSpaceOnUse">
-                                <polygon points="20,0 30,10 30,25 20,35 10,25 10,10"
-                                    stroke="currentColor" strokeWidth="0.5" fill="none"
-                                    className="text-primary" opacity="0.08" />
-                            </pattern>
-                        </defs>
-                        <rect y="100" width="100%" height="100" fill="url(#hexagons)" />
+                    {/* Paisaje Montañoso Low-Poly - 5 capas */}
+                    <svg className="absolute bottom-0 left-0 w-full z-10" height="300" viewBox="0 0 1200 300" preserveAspectRatio="none">
+                        <polygon points="0,300 0,200 150,180 300,220 450,190 600,230 750,200 900,240 1050,210 1200,250 1200,300" fill="#BBB9ED" opacity="0.15" />
+                        <polygon points="0,300 0,220 200,190 400,230 600,180 800,220 1000,200 1200,240 1200,300" fill="#BBB9ED" opacity="0.25" />
+                        <polygon points="100,300 100,240 300,210 500,250 700,220 900,260 1100,230 1200,270 1200,300" fill="#17B1C1" opacity="0.12" />
+                        <polygon points="0,300 50,250 200,260 350,240 500,270 650,250 800,280 950,260 1100,290 1200,280 1200,300" fill="#181144" opacity="0.3" />
+                        <polygon points="150,300 150,270 300,250 450,270 600,240 750,260 900,250 1050,270 1200,260 1200,300" fill="#F96C45" opacity="0.18" />
+                        <polygon points="0,300 100,280 250,270 400,290 550,260 700,285 850,275 1000,295 1200,285 1200,300" fill="#F96C45" opacity="0.25" />
+                        <polygon points="200,300 200,285 350,275 500,290 650,270 800,285 950,280 1100,295 1200,290 1200,300" fill="#181144" opacity="0.4" />
+                        <polygon points="0,300 50,295 150,290 250,295 350,288 450,293 550,290 650,295 750,292 850,296 950,293 1050,297 1150,294 1200,298 1200,300" fill="#181144" opacity="0.5" />
                     </svg>
 
-                    {/* Ondas del mar */}
-                    <svg className="absolute bottom-0 left-0 w-full opacity-10" height="100" viewBox="0 0 1000 100" preserveAspectRatio="none">
+                    <svg className="absolute bottom-0 left-0 w-full opacity-10 z-10" height="100" viewBox="0 0 1000 100" preserveAspectRatio="none">
                         <path d="M0,50 Q250,20 500,50 T1000,50 L1000,100 L0,100 Z" fill="currentColor" className="text-cyan" />
                     </svg>
+
 
                     {/* Estrellas parpadeantes - Cielo nocturno */}
                     <svg className="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -12,6 +13,10 @@ import { HollandTestPage } from "./pages/HollandTestPage";
 import { LandingPage } from "./pages/LandingPage";
 
 function App() {
+  // Forzar tema claro en toda la app
+  useEffect(() => {
+    document.documentElement.classList.remove('dark');
+  }, []);
   return (
     <ThemeProvider defaultTheme="system" storageKey="edusaas-theme">
       <AuthProvider>
