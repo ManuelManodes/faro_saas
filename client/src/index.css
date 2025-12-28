@@ -42,39 +42,38 @@
 
 
   .dark {
-    /* Tema Oscuro Neutro - Grises Suaves */
+    /* Tema Oscuro Equilibrado - Grises Neutros con Mejor Contraste */
     
-    /* Backgrounds - Gris oscuro neutro (sin saturación púrpura) */
+    /* Backgrounds - Gris oscuro neutro */
     --background: 220 13% 13%;
     /* #1e1f26 - gris oscuro suave */
-    --foreground: 0 0% 98%;
-    /* Blanco casi puro para legibilidad */
+    --foreground: 0 0% 95%;
+    /* Blanco suave para texto principal (MÁS VISIBLE) */
 
     /* Cards y superficies elevadas */
     --card: 220 13% 18%;
     /* #2a2c35 - gris medio-oscuro */
-    --card-foreground: 0 0% 98%;
+    --card-foreground: 0 0% 95%;
 
     --popover: 220 13% 18%;
-    --popover-foreground: 0 0% 98%;
+    --popover-foreground: 0 0% 95%;
 
-    /* Primary - Gris claro neutro (sin color) */
-    --primary: 220 13% 85%;
-    /* #d1d5db - gris muy claro */
+    /* Primary - Blanco suave para títulos y destacados (LEGIBLE) */
+    --primary: 0 0% 92%;
+    /* #EBEBEB - casi blanco, muy legible */
     --primary-foreground: 220 13% 13%;
-    /* Texto oscuro sobre gris claro */
 
     /* Secondary - Gris medio */
     --secondary: 220 13% 25%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: 0 0% 95%;
 
-    /* Muted - Textos secundarios */
-    --muted: 220 13% 30%;
-    --muted-foreground: 220 9% 60%;
-    /* Gris medio para texto secundario */
+    /* Muted - Textos secundarios (NO DEMASIADO TENUE) */
+    --muted: 220 13% 25%;
+    --muted-foreground: 0 0% 65%;
+    /* Gris medio-claro, legible */
 
-    /* Accent - Gris claro para highlights sutiles */
-    --accent: 220 13% 85%;
+    /* Accent - Blanco suave para highlights */
+    --accent: 0 0% 92%;
     --accent-foreground: 220 13% 13%;
 
     /* Colores Semánticos - SOLO para acciones y estados */
@@ -94,11 +93,11 @@
     /* #60A5FA - azul suave para EDITAR/INFO */
     --info-foreground: 0 0% 100%;
 
-    /* Borders e inputs */
-    --border: 220 13% 25%;
-    /* Bordes grises sutiles */
-    --input: 220 13% 25%;
-    --ring: 220 13% 85%;
+    /* Borders e inputs - MUY SUTILES */
+    --border: 220 13% 22%;
+    /* Bordes apenas visibles, no saturados */
+    --input: 220 13% 22%;
+    --ring: 0 0% 80%;
     /* Ring gris claro para focus */
 
     --radius: 0.75rem;
