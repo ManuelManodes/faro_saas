@@ -42,68 +42,67 @@
 
 
   .dark {
-    /* Tema Oscuro Equilibrado - Grises Neutros con Mejor Contraste */
+    /* Tokyo Night Storm Inspired - Moderno y Suave */
     
-    /* Backgrounds - Gris oscuro neutro */
-    --background: 220 13% 13%;
-    /* #1e1f26 - gris oscuro suave */
-    --foreground: 0 0% 95%;
-    /* Blanco suave para texto principal (MÁS VISIBLE) */
+    /* Backgrounds - Azul oscuro gris suave */
+    --background: 220 15% 16%;
+    /* #24283b - similar a Tokyo Night Storm */
+    --foreground: 225 15% 76%;
+    /* #a9b1d6 - gris azulado claro, muy legible */
 
-    /* Cards y superficies elevadas */
-    --card: 220 13% 18%;
-    /* #2a2c35 - gris medio-oscuro */
-    --card-foreground: 0 0% 95%;
+    /* Cards - Ligeramente más claras que background */
+    --card: 220 16% 19%;
+    /* #292e42 - card elevada */
+    --card-foreground: 225 15% 76%;
 
-    --popover: 220 13% 18%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 16% 19%;
+    --popover-foreground: 225 15% 76%;
 
-    /* Primary - Blanco suave para títulos y destacados (LEGIBLE) */
-    --primary: 0 0% 92%;
-    /* #EBEBEB - casi blanco, muy legible */
-    --primary-foreground: 220 13% 13%;
+    /* Primary - Azul suave moderno (toque Tokyo Night) */
+    --primary: 215 82% 74%;
+    /* #7aa2f7 - azul suave característico */
+    --primary-foreground: 220 15% 16%;
 
-    /* Secondary - Gris medio */
-    --secondary: 220 13% 25%;
-    --secondary-foreground: 0 0% 95%;
+    /* Secondary - Púrpura suave */
+    --secondary: 220 16% 24%;
+    --secondary-foreground: 225 15% 76%;
 
-    /* Muted - Textos secundarios (NO DEMASIADO TENUE) */
-    --muted: 220 13% 25%;
-    --muted-foreground: 0 0% 65%;
-    /* Gris medio-claro, legible */
+    /* Muted - Textos secundarios suaves */
+    --muted: 220 16% 24%;
+    --muted-foreground: 225 10% 60%;
+    /* Gris medio azulado */
 
-    /* Accent - Blanco suave para highlights */
-    --accent: 0 0% 92%;
-    --accent-foreground: 220 13% 13%;
+    /* Accent - Azul suave para highlights */
+    --accent: 215 82% 74%;
+    --accent-foreground: 220 15% 16%;
 
-    /* Colores Semánticos - SOLO para acciones y estados */
-    --destructive: 0 72% 70%;
-    /* #F87171 - rojo suave para BORRAR */
+    /* Colores Semánticos - Versiones Tokyo Night */
+    --destructive: 0 68% 66%;
+    /* #f7768e - rojo suave Tokyo Night */
     --destructive-foreground: 0 0% 100%;
 
-    --success: 142 71% 65%;
-    /* #34D399 - verde suave para CREAR */
+    --success: 158 64% 52%;
+    /* #9ece6a - verde suave Tokyo Night */
     --success-foreground: 0 0% 100%;
 
-    --warning: 38 92% 56%;
-    /* #FBBF24 - amarillo suave para ADVERTENCIAS */
+    --warning: 35 88% 68%;
+    /* #e0af68 - amarillo suave Tokyo Night */
     --warning-foreground: 0 0% 100%;
 
-    --info: 211 96% 69%;
-    /* #60A5FA - azul suave para EDITAR/INFO */
+    --info: 215 82% 74%;
+    /* #7aa2f7 - azul info (mismo que primary) */
     --info-foreground: 0 0% 100%;
 
-    /* Borders e inputs - MUY SUTILES */
-    --border: 220 13% 22%;
-    /* Bordes apenas visibles, no saturados */
-    --input: 220 13% 22%;
-    --ring: 0 0% 80%;
-    /* Ring gris claro para focus */
+    /* Borders - MUY sutiles, casi transparentes */
+    --border: 220 15% 22%;
+    /* Apenas visible */
+    --input: 220 15% 22%;
+    --ring: 215 82% 74%;
+    /* Ring azul suave para focus */
 
     --radius: 0.75rem;
   }
 }
-
   body {
     @apply bg-background text-foreground;
     font-family: 'Red Hat Text', sans-serif;
