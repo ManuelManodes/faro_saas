@@ -42,42 +42,42 @@
 
 
   .dark {
-    /* Tema Oscuro Elegante - Basado en Landing */
+    /* Tema Oscuro Neutro - Grises Suaves */
     
-    /* Backgrounds - Púrpura oscuro progresivo */
-    --background: 252 60% 9%;
-    /* #0f0a2d - casi negro con tinte púrpura */
-    --foreground: 0 0% 100%;
-    /* Blanco puro para máxima legibilidad */
+    /* Backgrounds - Gris oscuro neutro (sin saturación púrpura) */
+    --background: 220 13% 13%;
+    /* #1e1f26 - gris oscuro suave */
+    --foreground: 0 0% 98%;
+    /* Blanco casi puro para legibilidad */
 
     /* Cards y superficies elevadas */
-    --card: 252 55% 18%;
-    /* #221a52 - púrpura oscuro visible */
-    --card-foreground: 0 0% 100%;
+    --card: 220 13% 18%;
+    /* #2a2c35 - gris medio-oscuro */
+    --card-foreground: 0 0% 98%;
 
-    --popover: 252 55% 18%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 220 13% 18%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Primary - Lavender elegante del landing */
-    --primary: 246 52% 80%;
-    /* #BBB9ED - lavender suave */
-    --primary-foreground: 252 60% 9%;
-    /* Texto oscuro sobre lavender */
+    /* Primary - Gris claro neutro (sin color) */
+    --primary: 220 13% 85%;
+    /* #d1d5db - gris muy claro */
+    --primary-foreground: 220 13% 13%;
+    /* Texto oscuro sobre gris claro */
 
-    /* Secondary - Púrpura medio */
-    --secondary: 252 45% 25%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Gris medio */
+    --secondary: 220 13% 25%;
+    --secondary-foreground: 0 0% 98%;
 
-    /* Muted - Textos secundarios legibles */
-    --muted: 252 30% 30%;
-    --muted-foreground: 240 5% 65%;
-    /* Gris suave, no demasiado tenue */
+    /* Muted - Textos secundarios */
+    --muted: 220 13% 30%;
+    --muted-foreground: 220 9% 60%;
+    /* Gris medio para texto secundario */
 
-    /* Accent - Lavender para highlights */
-    --accent: 246 52% 80%;
-    --accent-foreground: 252 60% 9%;
+    /* Accent - Gris claro para highlights sutiles */
+    --accent: 220 13% 85%;
+    --accent-foreground: 220 13% 13%;
 
-    /* Colores Semánticos - Versiones suaves para dark mode */
+    /* Colores Semánticos - SOLO para acciones y estados */
     --destructive: 0 72% 70%;
     /* #F87171 - rojo suave para BORRAR */
     --destructive-foreground: 0 0% 100%;
@@ -95,19 +95,15 @@
     --info-foreground: 0 0% 100%;
 
     /* Borders e inputs */
-    --border: 252 30% 25%;
-    /* Bordes visibles pero sutiles */
-    --input: 252 30% 25%;
-    --ring: 246 52% 80%;
-    /* Ring lavender para focus */
+    --border: 220 13% 25%;
+    /* Bordes grises sutiles */
+    --input: 220 13% 25%;
+    --ring: 220 13% 85%;
+    /* Ring gris claro para focus */
 
     --radius: 0.75rem;
   }
 }
-
-@layer base {
-  * {
-    @apply border-border;
   }
 
   body {
