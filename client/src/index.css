@@ -104,7 +104,6 @@
     --radius: 0.75rem;
   }
 }
-  }
 
   body {
     @apply bg-background text-foreground;
