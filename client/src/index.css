@@ -42,43 +42,66 @@
 
 
   .dark {
-    /* Equiem Dark Mode - Contraste Máximo */
-    --background: 252 40% 4%;
-    /* Casi negro puro */
-    --foreground: 0 0% 98%;
-    /* Blanco casi puro */
+    /* Tema Oscuro Elegante - Basado en Landing */
+    
+    /* Backgrounds - Púrpura oscuro progresivo */
+    --background: 252 60% 9%;
+    /* #0f0a2d - casi negro con tinte púrpura */
+    --foreground: 0 0% 100%;
+    /* Blanco puro para máxima legibilidad */
 
-    /* Primary: Lavanda muy claro para alto contraste */
-    --primary: 252 80% 75%;
-    --primary-foreground: 252 50% 5%;
+    /* Cards y superficies elevadas */
+    --card: 252 55% 18%;
+    /* #221a52 - púrpura oscuro visible */
+    --card-foreground: 0 0% 100%;
 
-    /* Secondary: Coral muy brillante */
-    --secondary: 17 100% 75%;
-    --secondary-foreground: 0 0% 5%;
+    --popover: 252 55% 18%;
+    --popover-foreground: 0 0% 100%;
 
-    --card: 252 30% 10%;
-    /* Cards un poco más claras */
-    --card-foreground: 0 0% 98%;
+    /* Primary - Lavender elegante del landing */
+    --primary: 246 52% 80%;
+    /* #BBB9ED - lavender suave */
+    --primary-foreground: 252 60% 9%;
+    /* Texto oscuro sobre lavender */
 
-    --popover: 252 30% 10%;
-    --popover-foreground: 0 0% 98%;
+    /* Secondary - Púrpura medio */
+    --secondary: 252 45% 25%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 252 20% 20%;
-    /* Muted mucho más claro */
-    --muted-foreground: 0 0% 85%;
-    /* Texto muted MUY legible */
+    /* Muted - Textos secundarios legibles */
+    --muted: 252 30% 30%;
+    --muted-foreground: 240 5% 65%;
+    /* Gris suave, no demasiado tenue */
 
-    --accent: 189 90% 60%;
-    /* Cyan super brillante */
-    --accent-foreground: 0 0% 5%;
+    /* Accent - Lavender para highlights */
+    --accent: 246 52% 80%;
+    --accent-foreground: 252 60% 9%;
 
-    --destructive: 0 75% 55%;
+    /* Colores Semánticos - Versiones suaves para dark mode */
+    --destructive: 0 72% 70%;
+    /* #F87171 - rojo suave para BORRAR */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 252 20% 30%;
-    /* Bordes muy visibles */
-    --input: 252 20% 25%;
-    --ring: 189 90% 60%;
+    --success: 142 71% 65%;
+    /* #34D399 - verde suave para CREAR */
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 56%;
+    /* #FBBF24 - amarillo suave para ADVERTENCIAS */
+    --warning-foreground: 0 0% 100%;
+
+    --info: 211 96% 69%;
+    /* #60A5FA - azul suave para EDITAR/INFO */
+    --info-foreground: 0 0% 100%;
+
+    /* Borders e inputs */
+    --border: 252 30% 25%;
+    /* Bordes visibles pero sutiles */
+    --input: 252 30% 25%;
+    --ring: 246 52% 80%;
+    /* Ring lavender para focus */
+
+    --radius: 0.75rem;
   }
 }
 
