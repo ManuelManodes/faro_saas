@@ -110,7 +110,6 @@
     font-family: 'Red Hat Text', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-}
 
 /* Equiem Design System Utilities */
 @layer utilities {
