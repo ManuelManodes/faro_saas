@@ -6,8 +6,8 @@ export function LandingPage() {
 
     return (
         <div className="min-h-screen bg-white font-body">
-            {/* Hero Section - Púrpura Oscuro */}
-            <section className="relative bg-primary text-white overflow-hidden">
+            {/* Hero Section - NEGRO con tinte púrpura oscuro */}
+            <section className="relative text-white overflow-hidden" style={{ backgroundColor: '#0f0a2d' }}>
                 {/* Decorative Background */}
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-lavender rounded-full blur-3xl"></div>
@@ -68,19 +68,12 @@ export function LandingPage() {
                     </div>
 
 
-                    {/* Silueta de isla muy sutil - un solo color */}
-                    <svg className="absolute bottom-0 right-0 w-1/4 z-0" height="300" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMax meet" style={{ opacity: 0.08 }}>
-                        <polygon points="300,300 250,250 200,200 150,230 100,260 50,280 0,300" fill="#BBB9ED" />
-                    </svg>
 
                     {/* Mar muy sutil */}
                     <svg className="absolute bottom-0 left-0 w-full z-0" height="80" viewBox="0 0 1000 80" preserveAspectRatio="none" style={{ opacity: 0.06 }}>
                         <path d="M0,40 Q250,20 500,40 T1000,40 L1000,80 L0,80 Z" fill="#17B1C1" />
                     </svg>
 
-                        <path d="M0,60 Q250,30 500,60 T1000,60 L1000,120 L0,120 Z" fill="#17B1C1" opacity="0.15" />
-                        <path d="M0,80 Q200,60 400,80 T800,80 Q900,70 1000,85 L1000,120 L0,120 Z" fill="#181144" opacity="0.3" />
-                    </svg>
 
 
 
