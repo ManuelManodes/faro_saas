@@ -18,22 +18,22 @@ export function DashboardPage() {
             label: "Estudiantes Activos",
             value: studentsLoading ? "..." : (students?.length || 0).toString(),
             icon: Users,
-            color: "text-coral",
-            bg: "bg-coral/10"
+            color: "text-muted-foreground",
+            bg: "bg-muted/30"
         },
         {
             label: "Cursos Activos",
             value: coursesLoading ? "..." : (courses?.length || 0).toString(),
             icon: BookOpen,
-            color: "text-cyan",
-            bg: "bg-cyan/10"
+            color: "text-muted-foreground",
+            bg: "bg-muted/30"
         },
         {
             label: "Próximos Eventos",
             value: eventsLoading ? "..." : (upcomingEvents?.length || 0).toString(),
             icon: CalendarIcon,
-            color: "text-primary",
-            bg: "bg-lavender/30"
+            color: "text-muted-foreground",
+            bg: "bg-muted/30"
         },
     ];
 
@@ -75,10 +75,10 @@ export function DashboardPage() {
                             <Link
                                 key={link.to}
                                 to={link.to}
-                                className="flex items-center justify-between p-3 rounded-lg border hover:border-coral hover:bg-coral/5 transition-smooth group"
+                                className="flex items-center justify-between p-3 rounded-lg border hover:border-primary/50 hover:bg-muted/20 transition-smooth group"
                             >
-                                <span className="font-medium group-hover:text-coral transition-smooth">{link.label}</span>
-                                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-coral transition-smooth" />
+                                <span className="font-medium group-hover:text-primary transition-smooth">{link.label}</span>
+                                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-smooth" />
                             </Link>
                         ))}
                     </div>
@@ -88,7 +88,7 @@ export function DashboardPage() {
                 <div className="p-6 rounded-xl border bg-card shadow-soft">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="font-display font-semibold text-lg text-primary">Próximos Eventos</h3>
-                        <Link to="/app/calendar" className="text-sm text-cyan hover:text-cyan-600 transition-smooth font-medium">
+                        <Link to="/app/calendar" className="text-sm text-muted-foreground hover:text-primary transition-smooth font-medium">
                             Ver todos
                         </Link>
                     </div>
