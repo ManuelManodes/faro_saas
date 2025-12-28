@@ -11,7 +11,7 @@ export function LandingPage() {
                 {/* Decorative Background */}
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-lavender rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-coral/20 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-lavender/20 rounded-full blur-3xl"></div>
                 </div>
 
                 {/* Art Pop 90s Elements */}
@@ -21,13 +21,13 @@ export function LandingPage() {
                         {/* Faro Principal con Haz de Luz */}
                         <svg width="100" height="140" viewBox="0 0 100 140" className="animate-pulse-slow">
                             {/* Base del faro */}
-                            <rect x="35" y="100" width="30" height="40" fill="currentColor" className="text-coral" rx="2" />
+                            <rect x="35" y="100" width="30" height="40" fill="currentColor" className="text-lavender" rx="2" />
 
                             {/* Torre del faro con rayas */}
                             <rect x="37" y="40" width="26" height="15" fill="currentColor" className="text-white" opacity="0.8" />
-                            <rect x="37" y="55" width="26" height="15" fill="currentColor" className="text-coral" />
+                            <rect x="37" y="55" width="26" height="15" fill="currentColor" className="text-lavender" />
                             <rect x="37" y="70" width="26" height="15" fill="currentColor" className="text-white" opacity="0.8" />
-                            <rect x="37" y="85" width="26" height="15" fill="currentColor" className="text-coral" />
+                            <rect x="37" y="85" width="26" height="15" fill="currentColor" className="text-lavender" />
 
                             {/* Techo/linterna */}
                             <polygon points="50,25 62,40 38,40" fill="currentColor" className="text-primary" />
@@ -46,23 +46,23 @@ export function LandingPage() {
                         {/* Faro Secundario */}
                         <svg width="70" height="100" viewBox="0 0 70 100" className="animate-pulse-slow" style={{ animationDelay: '1.5s' }}>
                             {/* Base */}
-                            <rect x="27" y="70" width="16" height="30" fill="currentColor" className="text-cyan" rx="1" />
+                            <rect x="27" y="70" width="16" height="30" fill="currentColor" className="text-white" rx="1" />
 
                             {/* Torre con rayas */}
                             <rect x="28" y="35" width="14" height="10" fill="currentColor" className="text-white" opacity="0.7" />
-                            <rect x="28" y="45" width="14" height="10" fill="currentColor" className="text-cyan" />
+                            <rect x="28" y="45" width="14" height="10" fill="currentColor" className="text-white" />
                             <rect x="28" y="55" width="14" height="10" fill="currentColor" className="text-white" opacity="0.7" />
-                            <rect x="28" y="65" width="14" height="10" fill="currentColor" className="text-cyan" />
+                            <rect x="28" y="65" width="14" height="10" fill="currentColor" className="text-white" />
 
                             {/* Techo */}
                             <polygon points="35,20 42,35 28,35" fill="currentColor" className="text-primary" />
 
                             {/* Luz */}
-                            <circle cx="35" cy="23" r="4" fill="currentColor" className="text-coral animate-lighthouse-glow" style={{ animationDelay: '1.5s' }} />
+                            <circle cx="35" cy="23" r="4" fill="currentColor" className="text-lavender animate-lighthouse-glow" style={{ animationDelay: '1.5s' }} />
 
                             {/* Haz de luz - MÁS VISIBLE */}
                             <g className="animate-lighthouse-beam" style={{ transformOrigin: '35px 23px', animationDelay: '1.5s' }}>
-                                <path d="M35,23 L60,7 L60,39 Z" fill="currentColor" className="text-coral" opacity="0.35" />
+                                <path d="M35,23 L60,7 L60,39 Z" fill="currentColor" className="text-lavender" opacity="0.35" />
                             </g>
                         </svg>
                     </div>
@@ -87,7 +87,7 @@ export function LandingPage() {
                                 cy={`${(i * 47 + 7) % 80}%`}
                                 r={i % 3 === 0 ? "2" : "1.5"}
                                 fill="currentColor"
-                                className={i % 2 === 0 ? "text-lavender animate-twinkle" : "text-cyan animate-twinkle"}
+                                className={i % 2 === 0 ? "text-lavender animate-twinkle" : "text-white animate-twinkle"}
                                 style={{ animationDelay: `${i * 0.3}s` }}
                             />
                         ))}
@@ -99,13 +99,13 @@ export function LandingPage() {
                         {/* Left: Content */}
                         <div className="space-y-8">
                             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
-                                <span className="w-2 h-2 rounded-full bg-cyan animate-pulse"></span>
+                                <span className="w-2 h-2 rounded-full bg-lavender animate-pulse"></span>
                                 <span className="text-sm font-medium">Sistema de Gestión Educativa</span>
                             </div>
 
                             <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight">
                                 Gestión educativa
-                                <span className="block text-coral">inteligente.</span>
+                                <span className="block text-lavender">inteligente.</span>
                             </h1>
 
                             <p className="text-xl text-white/80 leading-relaxed max-w-lg">
@@ -115,7 +115,7 @@ export function LandingPage() {
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button
                                     onClick={() => navigate('/app')}
-                                    className="px-8 py-4 bg-coral hover:bg-coral-600 text-white font-display font-bold text-lg rounded-full transition-smooth shadow-soft-lg flex items-center justify-center gap-2"
+                                    className="px-8 py-4 bg-lavender hover:bg-lavender/90 text-primary font-display font-bold text-lg rounded-full transition-smooth shadow-soft-lg flex items-center justify-center gap-2"
                                 >
                                     Comienza Gratis
                                     <ArrowRight className="w-5 h-5" />
@@ -129,12 +129,12 @@ export function LandingPage() {
                         {/* Right: Stats Widget */}
                         <div className="space-y-4">
                             <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-8 shadow-soft-lg">
-                                <div className="text-6xl font-display font-bold text-coral mb-2">500+</div>
+                                <div className="text-6xl font-display font-bold text-lavender mb-2">500+</div>
                                 <div className="text-white/90 font-medium text-lg">Instituciones Confían en Faro</div>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-cyan/20 backdrop-blur-lg border border-cyan/30 rounded-2xl p-6">
-                                    <div className="text-4xl font-display font-bold text-cyan mb-1">98%</div>
+                                <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6">
+                                    <div className="text-4xl font-display font-bold text-white mb-1">98%</div>
                                     <div className="text-white/80 text-sm">Satisfacción</div>
                                 </div>
                                 <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6">
@@ -181,12 +181,12 @@ export function LandingPage() {
                             }
                         ].map((feature, i) => (
                             <div key={i} className="group bg-white border-2 border-gray-200 rounded-3xl p-8 hover:border-coral hover:shadow-soft-lg transition-smooth">
-                                <div className={`w-14 h-14 ${feature.color === 'coral' ? 'bg-coral/10' :
-                                    feature.color === 'cyan' ? 'bg-cyan/10' :
+                                <div className={`w-14 h-14 ${feature.color === 'coral' ? 'bg-lavender/10' :
+                                    feature.color === 'cyan' ? 'bg-white/10' :
                                         'bg-lavender/30'
                                     } rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-smooth`}>
-                                    <feature.icon className={`w-7 h-7 ${feature.color === 'coral' ? 'text-coral' :
-                                        feature.color === 'cyan' ? 'text-cyan' :
+                                    <feature.icon className={`w-7 h-7 ${feature.color === 'coral' ? 'text-lavender' :
+                                        feature.color === 'cyan' ? 'text-white' :
                                             'text-primary'
                                         }`} />
                                 </div>
@@ -255,8 +255,8 @@ export function LandingPage() {
                                     "Soporte técnico 24/7"
                                 ].map((benefit, i) => (
                                     <div key={i} className="flex items-start gap-4">
-                                        <div className="w-6 h-6 bg-cyan/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                                            <Check className="w-4 h-4 text-cyan" strokeWidth={3} />
+                                        <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                                            <Check className="w-4 h-4 text-white" strokeWidth={3} />
                                         </div>
                                         <span className="text-lg text-gray-700">{benefit}</span>
                                     </div>
@@ -271,7 +271,7 @@ export function LandingPage() {
                             </div>
                             <button
                                 onClick={() => navigate('/app')}
-                                className="px-8 py-4 bg-coral hover:bg-coral-600 text-white font-display font-bold rounded-full transition-smooth"
+                                className="px-8 py-4 bg-lavender hover:bg-lavender-600 text-white font-display font-bold rounded-full transition-smooth"
                             >
                                 Prueba Gratis
                             </button>
@@ -285,14 +285,14 @@ export function LandingPage() {
                 <div className="container mx-auto px-6 text-center">
                     <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">
                         ¿Listo para transformar
-                        <span className="block text-coral">tu institución?</span>
+                        <span className="block text-lavender">tu institución?</span>
                     </h2>
                     <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
                         Únete a cientos de instituciones que ya confían en Faro para su gestión educativa.
                     </p>
                     <button
                         onClick={() => navigate('/app')}
-                        className="px-12 py-5 bg-coral hover:bg-coral-600 text-white font-display font-bold text-xl rounded-full transition-smooth shadow-soft-lg inline-flex items-center gap-3"
+                        className="px-12 py-5 bg-lavender hover:bg-lavender-600 text-white font-display font-bold text-xl rounded-full transition-smooth shadow-soft-lg inline-flex items-center gap-3"
                     >
                         Empezar Ahora
                         <ArrowRight className="w-6 h-6" />
