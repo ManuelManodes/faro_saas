@@ -20,6 +20,9 @@ export function Header() {
     const [selectedIndex, setSelectedIndex] = useState(-1);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
+    // Detect platform
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+
     const searchInputRef = useRef<HTMLInputElement>(null);
     const userMenuRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +37,11 @@ export function Header() {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            // Mac: Cmd+K, Windows: Alt+Shift+K
+            const isMacShortcut = isMac && (e.metaKey || e.ctrlKey) && e.key === 'k';
+            const isWindowsShortcut = !isMac && e.altKey && e.shiftKey && e.key.toLowerCase() === 'k';
+
+            if (isMacShortcut || isWindowsShortcut) {
                 e.preventDefault();
                 searchInputRef.current?.focus();
             }
@@ -120,9 +127,21 @@ export function Header() {
                     </button>
                 )}
 
-                <div className="hidden lg:flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground border rounded-md px-2 py-0.5 bg-background/50 shrink-0 ml-1">
-                    <Command className="h-3 w-3" />
-                    <span>K</span>
+                <div className="hidden lg:flex items-center gap-1 text-[11px] font-medium text-muted-foreground border rounded-md px-2 py-1 bg-background/50 shrink-0 ml-1">
+                    {isMac ? (
+                        <>
+                            <Command className="h-3 w-3" />
+                            <span>K</span>
+                        </>
+                    ) : (
+                        <>
+                            <span className="text-[10px]">Alt</span>
+                            <span className="text-[10px]">+</span>
+                            <span className="text-[10px]">Shift</span>
+                            <span className="text-[10px]">+</span>
+                            <span>K</span>
+                        </>
+                    )}
                 </div>
 
                 {/* Autocomplete Dropdown */}
