@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Building2, Lock, Mail, ArrowRight, Loader2 } from "lucide-react";
+import { Lock, Mail, ArrowRight, Loader2 } from "lucide-react";
 
 
 export function LoginPage() {
@@ -40,9 +40,25 @@ export function LoginPage() {
             <div className="w-full max-w-md p-8 bg-card/50 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl relative z-10 mx-4">
                 <div className="flex flex-col items-center mb-8">
                     <div className="p-3 bg-primary/10 rounded-xl mb-4">
-                        <Building2 className="w-10 h-10 text-primary" />
+                        <svg className="w-10 h-10 text-primary" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            {/* Haz de luz apuntando a la derecha */}
+                            <g opacity="0.3">
+                                <path d="M50,28 L90,5 L90,51 Z" fill="currentColor" />
+                            </g>
+                            {/* Base del faro */}
+                            <rect x="35" y="100" width="30" height="40" fill="currentColor" rx="2" />
+                            {/* Torre con rayas */}
+                            <rect x="37" y="40" width="26" height="15" fill="currentColor" opacity="0.8" />
+                            <rect x="37" y="55" width="26" height="15" fill="currentColor" opacity="0.4" />
+                            <rect x="37" y="70" width="26" height="15" fill="currentColor" opacity="0.8" />
+                            <rect x="37" y="85" width="26" height="15" fill="currentColor" opacity="0.4" />
+                            {/* Techo/linterna */}
+                            <polygon points="50,25 62,40 38,40" fill="currentColor" />
+                            {/* Luz brillante */}
+                            <circle cx="50" cy="30" r="3" fill="currentColor" opacity="0.9" />
+                        </svg>
                     </div>
-                    <h1 className="text-2xl font-bold tracking-tight">Bienvenido a EduSaaS</h1>
+                    <h1 className="text-2xl font-bold tracking-tight">Bienvenido a Faro</h1>
                     <p className="text-sm text-muted-foreground text-center mt-2">
                         Ingresa tus credenciales para acceder al panel de gestión institucional.
                     </p>

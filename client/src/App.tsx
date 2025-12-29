@@ -13,7 +13,7 @@ import { LandingPage } from "./pages/LandingPage";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="edusaas-theme">
+    <ThemeProvider defaultTheme="system" storageKey="faro-theme">
       <AuthProvider>
         <BrowserRouter>
           <Toaster position="top-right" />

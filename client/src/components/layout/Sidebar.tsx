@@ -15,7 +15,7 @@ export function Sidebar() {
         <aside className="w-64 border-r bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/20 min-h-screen flex flex-col hidden md:flex z-20">
             <div className="h-16 flex items-center px-6 border-b">
                 <Building2 className="h-6 w-6 text-primary mr-2" />
-                <span className="font-bold text-lg tracking-tight">EduSaaS</span>
+                <span className="font-bold text-lg tracking-tight">Faro</span>
             </div>
 
             <nav className="flex-1 p-4 space-y-1">
@@ -40,7 +40,7 @@ export function Sidebar() {
 
             <div className="p-4 border-t">
                 <div className="bg-muted/50 rounded-lg p-4">
-                    <p className="text-xs text-muted-foreground">© 2025 EduSaaS Inc.</p>
+                    <p className="text-xs text-muted-foreground">© 2025 Faro Inc.</p>
                 </div>
             </div>
         </aside>

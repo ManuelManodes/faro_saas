@@ -16,11 +16,12 @@ export function LandingPage() {
                 </div>
 
                 {/* Art Pop 90s Elements */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 overflow-visible pointer-events-none">
                     {/* Faros - Temática Náutica Realista */}
-                    <div className="absolute top-20 right-10 opacity-25">
+                    <div className="absolute top-[83%] -translate-y-1/2 right-20 opacity-25 z-10">
                         {/* Faro Principal con Haz de Luz */}
-                        <svg width="100" height="140" viewBox="0 0 100 140" className="animate-pulse-slow">
+                        <svg width="120" height="170" viewBox="0 0 100 140" className="animate-pulse-slow" style={{ overflow: 'visible' }}>
+
                             {/* Base del faro */}
                             <rect x="35" y="100" width="30" height="40" fill="currentColor" className="text-lavender" rx="2" />
 
@@ -43,30 +44,6 @@ export function LandingPage() {
                         </svg>
                     </div>
 
-                    <div className="absolute bottom-32 left-20 opacity-20">
-                        {/* Faro Secundario */}
-                        <svg width="70" height="100" viewBox="0 0 70 100" className={`animate-pulse-slow ${styles.delayedAnimation}`}>
-                            {/* Base */}
-                            <rect x="27" y="70" width="16" height="30" fill="currentColor" className="text-white" rx="1" />
-
-                            {/* Torre con rayas */}
-                            <rect x="28" y="35" width="14" height="10" fill="currentColor" className="text-white" opacity="0.7" />
-                            <rect x="28" y="45" width="14" height="10" fill="currentColor" className="text-white" />
-                            <rect x="28" y="55" width="14" height="10" fill="currentColor" className="text-white" opacity="0.7" />
-                            <rect x="28" y="65" width="14" height="10" fill="currentColor" className="text-white" />
-
-                            {/* Techo */}
-                            <polygon points="35,20 42,35 28,35" fill="currentColor" className="text-primary" />
-
-                            {/* Luz */}
-                            <circle cx="35" cy="23" r="4" fill="currentColor" className={`text-lavender animate-lighthouse-glow ${styles.delayedAnimation}`} />
-
-                            {/* Haz de luz - MÁS VISIBLE */}
-                            <g className={`animate-lighthouse-beam ${styles.lighthouseBeamSecondary} ${styles.delayedAnimation}`}>
-                                <path d="M35,23 L60,7 L60,39 Z" fill="currentColor" className="text-lavender" opacity="0.35" />
-                            </g>
-                        </svg>
-                    </div>
 
 
 
@@ -113,19 +90,13 @@ export function LandingPage() {
                                 La plataforma todo-en-uno que transforma la administración de tu institución educativa. Simple, potente y diseñada para el éxito.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            <div className="flex justify-start">
                                 <button
                                     onClick={() => navigate('/app')}
-                                    className="px-8 py-4 bg-lavender hover:bg-lavender/90 text-primary font-display font-bold text-lg rounded-full transition-smooth shadow-soft-lg flex items-center justify-center gap-2"
+                                    className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-display font-bold text-lg rounded-full transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                                 >
                                     Comenzar Ahora
                                     <ArrowRight className="w-5 h-5" />
-                                </button>
-                                <button
-                                    onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                                    className="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-display font-semibold text-lg rounded-full transition-smooth backdrop-blur-sm"
-                                >
-                                    Ver Funcionalidades
                                 </button>
                             </div>
                         </div>
@@ -152,13 +123,13 @@ export function LandingPage() {
             </section>
 
             {/* Módulos Grid - 3 Columnas */}
-            <section id="features" className="py-32 bg-white">
+            <section id="features" className="py-24 md:py-32 bg-white">
                 <div className="container mx-auto px-6">
                     <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-4">
                             Todo en un solo lugar
                         </h2>
-                        <p className="text-xl text-gray-600">
+                        <p className="text-lg text-slate-600">
                             Herramientas potentes y simples para cada aspecto de la vida educativa.
                         </p>
                     </div>
@@ -184,12 +155,12 @@ export function LandingPage() {
                                 color: "lavender"
                             }
                         ].map((feature, i) => (
-                            <div key={i} className="group bg-white border border-gray-200 rounded-3xl p-8 hover:border-primary/30 hover:shadow-soft-lg transition-smooth">
-                                <div className="w-14 h-14 bg-lavender/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-smooth">
-                                    <feature.icon className="w-7 h-7 text-lavender" />
+                            <div key={i} className="bg-white border border-slate-200 rounded-2xl p-8 hover:border-indigo-300 hover:shadow-lg transition-all">
+                                <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6">
+                                    <feature.icon className="w-7 h-7 text-indigo-600" />
                                 </div>
-                                <h3 className="text-xl font-display font-bold text-primary mb-3">{feature.title}</h3>
-                                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                                <h3 className="text-2xl md:text-3xl font-display font-semibold text-slate-800 mb-3">{feature.title}</h3>
+                                <p className="text-lg text-slate-600 leading-relaxed">{feature.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -197,13 +168,13 @@ export function LandingPage() {
             </section>
 
             {/* Proceso - Numerado */}
-            <section className="py-32 bg-gradient-lavender">
+            <section className="py-24 md:py-32 bg-slate-50">
                 <div className="container mx-auto px-6">
                     <div className="text-center max-w-3xl mx-auto mb-20">
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-4">
                             Cómo Funciona
                         </h2>
-                        <p className="text-xl text-gray-600">
+                        <p className="text-lg text-slate-600">
                             Implementa Faro en tu institución en 3 pasos simples.
                         </p>
                     </div>
@@ -226,10 +197,10 @@ export function LandingPage() {
                                 desc: "Obtén insights valiosos con reportes automáticos y test vocacionales."
                             }
                         ].map((step, i) => (
-                            <div key={i} className="text-center space-y-4">
-                                <div className="text-8xl font-display font-bold text-lavender">{step.num}</div>
-                                <h3 className="text-2xl font-display font-bold text-primary">{step.title}</h3>
-                                <p className="text-gray-600 leading-relaxed">{step.desc}</p>
+                            <div key={i} className="text-center">
+                                <div className="text-7xl font-display font-black text-indigo-600 mb-6">{step.num}</div>
+                                <h3 className="text-2xl md:text-3xl font-display font-semibold text-slate-800 mb-4">{step.title}</h3>
+                                <p className="text-lg text-slate-600 leading-relaxed max-w-sm mx-auto">{step.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -237,11 +208,11 @@ export function LandingPage() {
             </section>
 
             {/* Beneficios con Checks */}
-            <section className="py-32 bg-white">
+            <section className="py-24 md:py-32 bg-white">
                 <div className="container mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
                         <div>
-                            <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
+                            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-8">
                                 Por qué elegir Faro
                             </h2>
                             <div className="space-y-4">
@@ -253,10 +224,10 @@ export function LandingPage() {
                                     "Soporte técnico 24/7"
                                 ].map((benefit, i) => (
                                     <div key={i} className="flex items-start gap-4">
-                                        <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                                        <div className="w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                                             <Check className="w-4 h-4 text-white" strokeWidth={3} />
                                         </div>
-                                        <span className="text-lg text-gray-700">{benefit}</span>
+                                        <span className="text-lg text-slate-600">{benefit}</span>
                                     </div>
                                 ))}
                             </div>
@@ -264,33 +235,26 @@ export function LandingPage() {
 
                         <div className="bg-primary/5 rounded-3xl p-12 text-center">
                             <div className="text-6xl font-display font-bold text-primary mb-4">35%</div>
-                            <div className="text-xl text-gray-600 mb-8">
+                            <div className="text-xl text-slate-600 mb-8">
                                 Reducción en tiempo administrativo reportada por nuestros usuarios
                             </div>
-                            <button
-                                onClick={() => navigate('/app')}
-                                className="px-8 py-4 bg-lavender hover:bg-lavender-600 text-white font-display font-bold rounded-full transition-smooth"
-                            >
-                                Prueba Gratis
-                            </button>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* CTA Final - Full Width */}
-            <section className="py-24 bg-primary text-white">
+            <section className="py-24 md:py-32 bg-slate-50">
                 <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">
-                        ¿Listo para transformar
-                        <span className="block text-lavender">tu institución?</span>
+                    <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">
+                        ¿Listo para transformar tu institución?
                     </h2>
-                    <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
+                    <p className="text-lg text-slate-600 mb-12 max-w-2xl mx-auto">
                         Únete a cientos de instituciones que ya confían en Faro para su gestión educativa.
                     </p>
                     <button
                         onClick={() => navigate('/app')}
-                        className="px-12 py-5 bg-lavender hover:bg-lavender-600 text-white font-display font-bold text-xl rounded-full transition-smooth shadow-soft-lg inline-flex items-center gap-3"
+                        className="px-12 py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-display font-bold text-xl rounded-full transition-smooth shadow-soft-lg inline-flex items-center gap-3"
                     >
                         Empezar Ahora
                         <ArrowRight className="w-6 h-6" />
