@@ -191,7 +191,7 @@ export function AttendancePage() {
                                         className={cn(
                                             "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 border",
                                             !isAbsent
-                                                ? "bg-green-600 text-white border-green-600 shadow-sm"
+                                                ? "bg-success text-success-foreground border-success shadow-sm"
                                                 : "bg-background text-muted-foreground hover:bg-muted"
                                         )}
                                     >
@@ -209,7 +209,7 @@ export function AttendancePage() {
                         disabled={isSaved}
                         className={cn(
                             "px-6 py-2.5 rounded-lg font-medium flex items-center gap-2 transition-all",
-                            isSaved ? "bg-green-600 text-white" : "bg-primary text-primary-foreground hover:bg-primary/90"
+                            isSaved ? "bg-success text-success-foreground" : "bg-primary text-primary-foreground hover:bg-primary/90"
                         )}
                     >
                         {isSaved ? (

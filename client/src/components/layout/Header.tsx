@@ -164,7 +164,7 @@ export function Header() {
                 <div className="flex items-center border rounded-full p-1 bg-muted/30">
                     <button
                         onClick={() => setTheme("light")}
-                        className={cn("p-1.5 rounded-full transition-all", theme === "light" && "bg-background shadow-sm text-yellow-500")}
+                        className={cn("p-1.5 rounded-full transition-all", theme === "light" && "bg-background shadow-sm text-warning")}
                     >
                         <Sun className="h-4 w-4" />
                     </button>
@@ -176,7 +176,7 @@ export function Header() {
                     </button>
                     <button
                         onClick={() => setTheme("dark")}
-                        className={cn("p-1.5 rounded-full transition-all", theme === "dark" && "bg-background shadow-sm text-blue-400")}
+                        className={cn("p-1.5 rounded-full transition-all", theme === "dark" && "bg-background shadow-sm text-info")}
                     >
                         <Moon className="h-4 w-4" />
                     </button>

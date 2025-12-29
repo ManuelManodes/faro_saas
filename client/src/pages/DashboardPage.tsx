@@ -40,20 +40,20 @@ export function DashboardPage() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="text-4xl font-display font-bold tracking-tight text-primary">Hola, {user?.name.split(" ")[0]} 👋</h1>
+                <h1 className="text-4xl font-display font-bold tracking-tight">Hola, {user?.name.split(" ")[0]} 👋</h1>
                 <p className="text-muted-foreground mt-2 font-body">Bienvenido al panel de control de Faro. Aquí tienes un resumen de hoy.</p>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {stats.map((stat, index) => (
-                    <div key={index} className="p-6 rounded-xl border bg-card text-card-foreground shadow-soft transition-smooth hover:shadow-soft-lg">
+                    <div key={index} className="p-6 rounded-lg border bg-card">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
-                                <div className="text-3xl font-display font-bold mt-2 text-primary">{stat.value}</div>
+                                <div className="text-3xl font-display font-bold mt-2">{stat.value}</div>
                             </div>
-                            <div className={`p-3 rounded-full ${stat.bg}`}>
-                                <stat.icon className={`w-6 h-6 ${stat.color}`} />
+                            <div className="p-3 rounded-full bg-muted/30">
+                                <stat.icon className="w-6 h-6 text-muted-foreground" />
                             </div>
                         </div>
                     </div>
@@ -110,9 +110,9 @@ export function DashboardPage() {
                                                 {new Date(event.startDate).toLocaleDateString('es-CL')}
                                             </p>
                                         </div>
-                                        <span className={`text-xs px-2 py-1 rounded-full ${event.eventType === 'EVALUACION' ? 'bg-red-500/10 text-red-600' :
-                                            event.eventType === 'REUNION' ? 'bg-blue-500/10 text-blue-600' :
-                                                'bg-purple-500/10 text-purple-600'
+                                        <span className={`text-xs px-2 py-1 rounded-full ${event.eventType === 'EVALUACION' ? 'bg-event-evaluacion/10 text-event-evaluacion' :
+                                            event.eventType === 'REUNION' ? 'bg-event-reunion/10 text-event-reunion' :
+                                                'bg-event-institucional/10 text-event-institucional'
                                             }`}>
                                             {event.eventType}
                                         </span>

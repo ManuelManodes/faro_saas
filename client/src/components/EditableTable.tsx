@@ -130,10 +130,10 @@ export function EditableTable() {
                 <div className="flex gap-2">
                     {editingId === user.id ? (
                         <>
-                            <button onClick={handleSave} className="p-1.5 bg-emerald-100 text-emerald-600 rounded dark:bg-emerald-900/30 dark:text-emerald-400">
+                            <button onClick={handleSave} className="p-1.5 bg-success/10 text-success rounded hover:bg-success/20">
                                 <Save className="w-4 h-4" />
                             </button>
-                            <button onClick={handleCancel} className="p-1.5 bg-red-100 text-red-600 rounded dark:bg-red-900/30 dark:text-red-400">
+                            <button onClick={handleCancel} className="p-1.5 bg-destructive/10 text-destructive rounded hover:bg-destructive/20">
                                 <X className="w-4 h-4" />
                             </button>
                         </>
@@ -199,17 +199,17 @@ export function EditableTable() {
                 <div className="flex items-center gap-3 pt-2 text-sm">
                     <span className={cn(
                         "px-2 py-1 rounded-full text-xs font-medium",
-                        user.role === "Admin" ? "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400" :
-                            user.role === "Editor" ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" :
-                                "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                        user.role === "Admin" ? "bg-decorative-purple/10 text-decorative-purple" :
+                            user.role === "Editor" ? "bg-decorative-blue/10 text-decorative-blue" :
+                                "bg-muted text-muted-foreground"
                     )}>
                         {user.role}
                     </span>
                     <span className={cn(
                         "inline-flex items-center gap-1.5",
-                        user.status === "Active" ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"
+                        user.status === "Active" ? "text-success" : "text-destructive"
                     )}>
-                        <span className={cn("w-1.5 h-1.5 rounded-full", user.status === "Active" ? "bg-emerald-600 dark:bg-emerald-400" : "bg-red-600 dark:bg-red-400")} />
+                        <span className={cn("w-1.5 h-1.5 rounded-full", user.status === "Active" ? "bg-success" : "bg-destructive")} />
                         {user.status}
                     </span>
                 </div>
@@ -348,9 +348,9 @@ export function EditableTable() {
                                         ) : (
                                             <span className={cn(
                                                 "px-2 py-1 rounded-full text-xs font-medium",
-                                                user.role === "Admin" ? "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400" :
-                                                    user.role === "Editor" ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" :
-                                                        "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                                                user.role === "Admin" ? "bg-decorative-purple/10 text-decorative-purple" :
+                                                    user.role === "Editor" ? "bg-decorative-blue/10 text-decorative-blue" :
+                                                        "bg-muted text-muted-foreground"
                                             )}>
                                                 {user.role}
                                             </span>
@@ -370,9 +370,9 @@ export function EditableTable() {
                                         ) : (
                                             <span className={cn(
                                                 "inline-flex items-center gap-1.5",
-                                                user.status === "Active" ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"
+                                                user.status === "Active" ? "text-success" : "text-destructive"
                                             )}>
-                                                <span className={cn("w-1.5 h-1.5 rounded-full", user.status === "Active" ? "bg-emerald-600 dark:bg-emerald-400" : "bg-red-600 dark:bg-red-400")} />
+                                                <span className={cn("w-1.5 h-1.5 rounded-full", user.status === "Active" ? "bg-success" : "bg-destructive")} />
                                                 {user.status}
                                             </span>
                                         )}
@@ -380,10 +380,10 @@ export function EditableTable() {
                                     <td className="px-6 py-4 text-right">
                                         {editingId === user.id ? (
                                             <div className="flex justify-end gap-2">
-                                                <button onClick={handleSave} className="p-1 hover:bg-emerald-100 text-emerald-600 rounded dark:hover:bg-emerald-900/30">
+                                                <button onClick={handleSave} className="p-1 hover:bg-success/20 text-success rounded">
                                                     <Save className="w-4 h-4" />
                                                 </button>
-                                                <button onClick={handleCancel} className="p-1 hover:bg-red-100 text-red-600 rounded dark:hover:bg-red-900/30">
+                                                <button onClick={handleCancel} className="p-1 hover:bg-destructive/20 text-destructive rounded">
                                                     <X className="w-4 h-4" />
                                                 </button>
                                             </div>

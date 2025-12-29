@@ -92,7 +92,7 @@ export function HollandTestPage() {
     return (
         <div className="space-y-6 max-w-3xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
-                <div className="p-3 bg-purple-500/10 rounded-xl text-purple-600">
+                <div className="p-3 bg-decorative-purple/10 rounded-xl text-decorative-purple">
                     <BrainCircuit className="w-8 h-8" />
                 </div>
                 <div>
@@ -178,7 +178,7 @@ export function HollandTestPage() {
                         <button
                             disabled={Object.keys(answers).length < QUESTIONS.length}
                             onClick={handleSave}
-                            className="btn bg-green-600 text-white px-8 py-2 rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-lg shadow-green-600/20"
+                            className="btn bg-success text-success-foreground px-8 py-2 rounded-lg font-medium hover:bg-success/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-lg shadow-success/20"
                         >
                             <Save className="w-4 h-4" /> Finalizar y Guardar
                         </button>
@@ -188,7 +188,7 @@ export function HollandTestPage() {
 
             {step === 3 && (
                 <div className="card bg-card border rounded-xl p-8 shadow-sm text-center animate-in zoom-in-95 duration-300">
-                    <div className="w-20 h-20 bg-green-100 dark:bg-green-900/20 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div className="w-20 h-20 bg-success/20 text-success rounded-full flex items-center justify-center mx-auto mb-6">
                         <CheckCircle className="w-10 h-10" />
                     </div>
                     <h2 className="text-2xl font-bold mb-2">¡Test Completado!</h2>

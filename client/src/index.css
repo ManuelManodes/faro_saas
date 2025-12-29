@@ -1,115 +1,115 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&family=Red+Hat+Text:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Light mode - Blanco limpio */
     --background: 0 0% 100%;
     --foreground: 252 55% 14%;
-    
     --primary: 252 55% 14%;
     --primary-foreground: 0 0% 100%;
-    
     --secondary: 17 94% 62%;
     --secondary-foreground: 0 0% 100%;
-    
     --card: 0 0% 100%;
     --card-foreground: 252 55% 14%;
-    
     --popover: 0 0% 100%;
     --popover-foreground: 252 55% 14%;
-    
     --muted: 220 13% 91%;
     --muted-foreground: 220 9% 46%;
-    
     --accent: 246 52% 80%;
     --accent-foreground: 252 55% 14%;
-    
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 252 55% 14%;
     --radius: 0.75rem;
+
+    /* Semantic colors for states */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+
+    /* Event type colors */
+    --event-reunion: 217 91% 60%;
+    --event-evaluacion: 0 84% 60%;
+    --event-institucional: 142 71% 45%;
+
+    /* Decorative colors for icons and badges */
+    --decorative-blue: 217 91% 60%;
+    --decorative-purple: 262 83% 58%;
+    --decorative-green: 142 71% 45%;
   }
 
   .dark {
-    /* Tokyo Night Storm - Tema Oscuro Moderno */
-    
-    /* Backgrounds */
-    --background: 222 18% 16%;
-    /* #24283b */
+    /* Tokyo Night Storm - Fondo oscuro elegante */
+    --background: 220 16% 10%;
     --foreground: 225 15% 76%;
-    /* #a9b1d6 */
-    
-    /* Cards */
-    --card: 220 16% 20%;
-    /* #292e42 */
+
+    /* Card - mismo que background, separación por border */
+    --card: 220 16% 10%;
     --card-foreground: 225 15% 76%;
-    
-    --popover: 220 16% 20%;
+
+    --popover: 220 16% 10%;
     --popover-foreground: 225 15% 76%;
-    
-    /* Primary - Azul Tokyo Night */
-    --primary: 215 82% 74%;
-    /* #7aa2f7 */
-    --primary-foreground: 222 18% 16%;
-    
-    /* Secondary */
-    --secondary: 220 16% 24%;
+
+    --primary: 225 15% 76%;
+    --primary-foreground: 220 16% 10%;
+
+    --secondary: 220 16% 8%;
     --secondary-foreground: 225 15% 76%;
-    
-    /* Muted */
-    --muted: 220 16% 24%;
-    --muted-foreground: 225 10% 60%;
-    
-    /* Accent */
-    --accent: 215 82% 74%;
-    --accent-foreground: 222 18% 16%;
-    
-    /* Semantic colors - Tokyo Night palette */
-    --destructive: 354 68% 66%;
-    /* #f7768e */
+
+    /* Muted para fondos sutiles */
+    --muted: 220 16% 12%;
+    --muted-foreground: 223 14% 55%;
+
+    --accent: 223 14% 55%;
+    --accent-foreground: 225 15% 76%;
+
+    --destructive: 354 68% 75%;
     --destructive-foreground: 0 0% 100%;
-    
-    --success: 158 64% 52%;
-    /* #9ece6a */
+    --success: 150 40% 62%;
     --success-foreground: 0 0% 100%;
-    
     --warning: 35 88% 68%;
-    /* #e0af68 */
     --warning-foreground: 0 0% 100%;
-    
-    --info: 215 82% 74%;
-    /* #7aa2f7 */
+    --info: 213 93% 67%;
     --info-foreground: 0 0% 100%;
-    
-    /* Borders */
-    --border: 220 16% 22%;
-    --input: 220 16% 22%;
-    --ring: 215 82% 74%;
+
+    /* Event type colors - adjusted for dark theme */
+    --event-reunion: 213 93% 67%;
+    --event-evaluacion: 354 68% 75%;
+    --event-institucional: 150 40% 62%;
+
+    /* Decorative colors - softer for dark mode */
+    --decorative-blue: 213 93% 67%;
+    --decorative-purple: 262 52% 67%;
+    --decorative-green: 150 40% 62%;
+
+    /* TEST: Bordes en amarillo para verificar cambios */
+    --border: 45 93% 47%;
+    --input: 220 16% 12%;
+    --ring: 223 14% 55%;
     --radius: 0.75rem;
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: 'Red Hat Text', sans-serif;
-    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Borders con buen contraste visible en dark mode */
+  .dark *[class*="border"] {
+    border-color: hsl(220 16% 22%) !important;
   }
 }
 
-/* Utilidades personalizadas */
 @layer utilities {
   .font-display {
     font-family: 'Red Hat Display', sans-serif;
-  }
-
-  .font-body {
-    font-family: 'Red Hat Text', sans-serif;
   }
 
   .shadow-soft {
@@ -125,11 +125,13 @@
   }
 }
 
-/* Animaciones */
 @keyframes lighthouse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.6;
   }
@@ -139,24 +141,31 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
 @keyframes twinkle {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.3;
   }
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.8;
   }

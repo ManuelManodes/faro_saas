@@ -78,7 +78,7 @@ export function StudentsPage() {
     if (error) {
         return (
             <div className="p-8 text-center">
-                <div className="text-red-600 dark:text-red-400">
+                <div className="text-destructive">
                     <p className="text-lg font-semibold mb-2">Error al cargar estudiantes</p>
                     <p className="text-sm">{(error as Error).message}</p>
                 </div>
@@ -98,7 +98,7 @@ export function StudentsPage() {
                 </div>
                 <button
                     onClick={handleCreate}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-decorative-blue text-white rounded-lg hover:bg-decorative-blue/90 transition-colors"
                 >
                     <Plus className="w-4 h-4" />
                     Nuevo Estudiante
@@ -148,8 +148,8 @@ export function StudentsPage() {
             <div className="grid gap-4 md:grid-cols-3">
                 <div className="p-4 rounded-xl border bg-card">
                     <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-full bg-blue-500/10">
-                            <Users className="w-5 h-5 text-blue-500" />
+                        <div className="p-2 rounded-full bg-decorative-blue/10">
+                            <Users className="w-5 h-5 text-decorative-blue" />
                         </div>
                         <div>
                             <p className="text-sm text-muted-foreground">Total Estudiantes</p>
@@ -160,8 +160,8 @@ export function StudentsPage() {
 
                 <div className="p-4 rounded-xl border bg-card">
                     <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-full bg-green-500/10">
-                            <Users className="w-5 h-5 text-green-500" />
+                        <div className="p-2 rounded-full bg-decorative-green/10">
+                            <Users className="w-5 h-5 text-decorative-green" />
                         </div>
                         <div>
                             <p className="text-sm text-muted-foreground">Activos</p>
@@ -174,8 +174,8 @@ export function StudentsPage() {
 
                 <div className="p-4 rounded-xl border bg-card">
                     <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-full bg-purple-500/10">
-                            <Filter className="w-5 h-5 text-purple-500" />
+                        <div className="p-2 rounded-full bg-decorative-purple/10">
+                            <Filter className="w-5 h-5 text-decorative-purple" />
                         </div>
                         <div>
                             <p className="text-sm text-muted-foreground">Filtrados</p>
@@ -189,7 +189,7 @@ export function StudentsPage() {
             <div className="rounded-xl border bg-card overflow-hidden">
                 {isLoading ? (
                     <div className="p-12 text-center">
-                        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-decorative-blue"></div>
                         <p className="mt-4 text-muted-foreground">Cargando estudiantes...</p>
                     </div>
                 ) : students && students.length > 0 ? (
@@ -241,10 +241,10 @@ export function StudentsPage() {
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <span
                                                 className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${student.status === 'ACTIVO'
-                                                        ? 'bg-green-500/10 text-green-600 dark:text-green-400'
-                                                        : student.status === 'INACTIVO'
-                                                            ? 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400'
-                                                            : 'bg-red-500/10 text-red-600 dark:text-red-400'
+                                                    ? 'bg-success/10 text-success'
+                                                    : student.status === 'INACTIVO'
+                                                        ? 'bg-warning/10 text-warning'
+                                                        : 'bg-destructive/10 text-destructive'
                                                     }`}
                                             >
                                                 {student.status}
@@ -257,7 +257,7 @@ export function StudentsPage() {
                                             <div className="flex justify-end gap-2">
                                                 <button
                                                     onClick={() => handleEdit(student)}
-                                                    className="p-2 text-blue-600 hover:bg-blue-500/10 rounded-lg transition-colors"
+                                                    className="p-2 text-decorative-blue hover:bg-decorative-blue/10 rounded-lg transition-colors"
                                                     title="Editar"
                                                 >
                                                     <Edit2 className="w-4 h-4" />
@@ -265,7 +265,7 @@ export function StudentsPage() {
                                                 <button
                                                     onClick={() => handleDeleteClick(student)}
                                                     disabled={student.status === 'RETIRADO'}
-                                                    className="p-2 text-red-600 hover:bg-red-500/10 rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                                                    className="p-2 text-destructive hover:bg-destructive/10 rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                                                     title={student.status === 'RETIRADO' ? 'Ya está retirado' : 'Eliminar'}
                                                 >
                                                     <Trash2 className="w-4 h-4" />

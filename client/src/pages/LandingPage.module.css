@@ -1,0 +1,53 @@
+/* ============================================
+   LANDING PAGE - CSS MODULE
+   Estilos dedicados para el Landing Page
+   ============================================ */
+
+/* --------------------------------------------
+   Hero Section Background
+   -------------------------------------------- */
+
+.heroSection {
+    background-color: #0f0a2d;
+}
+
+/* --------------------------------------------
+   Lighthouse SVG Transform Origins
+   Properly position the rotation center for
+   the lighthouse beams
+   -------------------------------------------- */
+
+.lighthouseBeamPrimary {
+    transform-origin: 50px 28px;
+}
+
+.lighthouseBeamSecondary {
+    transform-origin: 35px 23px;
+}
+
+/* --------------------------------------------
+   Animation Timing
+   Coordinated delays for lighthouse elements
+   -------------------------------------------- */
+
+.delayedAnimation {
+    animation-delay: 1.5s;
+}
+
+/* --------------------------------------------
+   Decorative Elements
+   Ocean waves and atmospheric effects
+   -------------------------------------------- */
+
+.oceanWave {
+    opacity: 0.06;
+}
+
+/* --------------------------------------------
+   Star Animations
+   Dynamic delays using CSS custom properties
+   -------------------------------------------- */
+
+.star {
+    animation-delay: var(--star-delay);
+}

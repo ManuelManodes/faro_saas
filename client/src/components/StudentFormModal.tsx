@@ -94,7 +94,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* RUT */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                RUT <span className="text-red-500">*</span>
+                                RUT <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="text"
@@ -115,7 +115,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* First Name */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Nombre <span className="text-red-500">*</span>
+                                Nombre <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="text"
@@ -131,7 +131,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Last Name */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Apellido <span className="text-red-500">*</span>
+                                Apellido <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="text"
@@ -147,7 +147,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Email */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Email <span className="text-red-500">*</span>
+                                Email <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="email"
@@ -163,7 +163,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Phone */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Teléfono <span className="text-red-500">*</span>
+                                Teléfono <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="tel"
@@ -179,7 +179,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Birth Date */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Fecha de Nacimiento <span className="text-red-500">*</span>
+                                Fecha de Nacimiento <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="date"
@@ -194,7 +194,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Grade */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Grado <span className="text-red-500">*</span>
+                                Grado <span className="text-destructive">*</span>
                             </label>
                             <select
                                 required
@@ -216,7 +216,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Section */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Sección <span className="text-red-500">*</span>
+                                Sección <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="text"
@@ -232,7 +232,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Address - Full Width */}
                         <div className="md:col-span-2">
                             <label className="block text-sm font-medium mb-2">
-                                Dirección <span className="text-red-500">*</span>
+                                Dirección <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="text"
@@ -253,7 +253,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Emergency Contact Name */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Nombre <span className="text-red-500">*</span>
+                                Nombre <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="text"
@@ -274,7 +274,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Emergency Contact Phone */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Teléfono <span className="text-red-500">*</span>
+                                Teléfono <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="tel"
@@ -295,7 +295,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         {/* Emergency Contact Relationship */}
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Parentesco <span className="text-red-500">*</span>
+                                Parentesco <span className="text-destructive">*</span>
                             </label>
                             <input
                                 type="text"
@@ -331,7 +331,7 @@ export function StudentFormModal({ isOpen, onClose, onSubmit, student, isLoading
                         >
                             {isLoading ? (
                                 <>
-                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    <div className="w-4 h-4 border border-white/30 border-t-white rounded-full animate-spin" />
                                     Guardando...
                                 </>
                             ) : (

@@ -22,8 +22,8 @@ export function DeleteConfirmation({
             <div className="bg-card w-full max-w-md rounded-xl shadow-2xl border">
                 <div className="p-6">
                     <div className="flex items-center gap-4 mb-4">
-                        <div className="p-3 bg-red-500/10 rounded-full">
-                            <AlertTriangle className="w-6 h-6 text-red-600" />
+                        <div className="p-3 bg-destructive/10 rounded-full">
+                            <AlertTriangle className="w-6 h-6 text-destructive" />
                         </div>
                         <div>
                             <h2 className="text-xl font-bold">Confirmar Eliminación</h2>
@@ -49,11 +49,11 @@ export function DeleteConfirmation({
                         <button
                             onClick={onConfirm}
                             disabled={isLoading}
-                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            className="px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                         >
                             {isLoading ? (
                                 <>
-                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    <div className="w-4 h-4 border border-white/30 border-t-white rounded-full animate-spin" />
                                     Eliminando...
                                 </>
                             ) : (

@@ -8,9 +8,9 @@ import type { CreateCalendarEventInput } from "../api/types";
 type EventType = "REUNION" | "EVALUACION" | "EVENTO_INSTITUCIONAL";
 
 const TYPE_COLORS: Record<EventType, string> = {
-    REUNION: "bg-blue-500/10 text-blue-600 border-blue-200 dark:border-blue-900",
-    EVALUACION: "bg-red-500/10 text-red-600 border-red-200 dark:border-red-900",
-    EVENTO_INSTITUCIONAL: "bg-green-500/10 text-green-600 border-green-200 dark:border-green-900",
+    REUNION: "bg-event-reunion/10 text-event-reunion border-event-reunion/20",
+    EVALUACION: "bg-event-evaluacion/10 text-event-evaluacion border-event-evaluacion/20",
+    EVENTO_INSTITUCIONAL: "bg-event-institucional/10 text-event-institucional border-event-institucional/20",
 };
 
 
@@ -308,7 +308,7 @@ export function CalendarPage() {
                                     {events.filter(e => e.startDate === formState.startDate).map(event => (
                                         <div key={event.id} className="flex items-center justify-between text-sm p-2 rounded bg-card border">
                                             <div className="flex items-center gap-2 overflow-hidden">
-                                                <div className={`w-2 h-2 rounded-full ${TYPE_COLORS[event.eventType as EventType]?.split(' ')[0].replace('/10', '') || 'bg-blue-500'}`} />
+                                                <div className={`w-2 h-2 rounded-full ${TYPE_COLORS[event.eventType as EventType]?.split(' ')[0].replace('/10', '') || 'bg-event-reunion'}`} />
                                                 <span className="truncate">{event.title}</span>
                                                 <span className="text-xs text-muted-foreground ml-auto">{event.startTime || 'Todo el día'}</span>
                                             </div>

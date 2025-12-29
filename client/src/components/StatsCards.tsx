@@ -28,7 +28,7 @@ export function StatsCards() {
                         </div>
                         <div className="flex items-baseline justify-between pt-2">
                             <div className="text-2xl font-bold">{stat.value}</div>
-                            <div className="text-xs font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">
+                            <div className="text-xs font-medium text-success bg-success/10 px-2 py-0.5 rounded-full">
                                 {stat.change}
                             </div>
                         </div>

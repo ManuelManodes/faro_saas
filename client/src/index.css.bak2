@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Blanco puro limpio */
+    --background: 0 0% 100%;
+    --foreground: 252 55% 14%;
+    /* #181144 */
+
+    /* Equiem Primary: Púrpura Oscuro */
+    --primary: 252 55% 14%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Equiem Secondary: Coral para CTAs */
+    --secondary: 17 94% 62%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Cards con sombra subtle */
+    --card: 0 0% 100%;
+    --card-foreground: 252 55% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 252 55% 14%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8.9% 46%;
+
+    /* Accent: Cyan para elementos secundarios */
+    --accent: 189 78% 41%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 252 55% 14%;
+    --radius: 0.75rem;
+  }
+
+
+  .dark {
+    /* Tema Oscuro Neutro - Grises Suaves */
+    
+    /* Backgrounds - Gris oscuro neutro (sin saturación púrpura) */
+    --background: 220 13% 13%;
+    /* #1e1f26 - gris oscuro suave */
+    --foreground: 0 0% 98%;
+    /* Blanco casi puro para legibilidad */
+
+    /* Cards y superficies elevadas */
+    --card: 220 13% 18%;
+    /* #2a2c35 - gris medio-oscuro */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 13% 18%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary - Gris claro neutro (sin color) */
+    --primary: 220 13% 85%;
+    /* #d1d5db - gris muy claro */
+    --primary-foreground: 220 13% 13%;
+    /* Texto oscuro sobre gris claro */
+
+    /* Secondary - Gris medio */
+    --secondary: 220 13% 25%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Muted - Textos secundarios */
+    --muted: 220 13% 30%;
+    --muted-foreground: 220 9% 60%;
+    /* Gris medio para texto secundario */
+
+    /* Accent - Gris claro para highlights sutiles */
+    --accent: 220 13% 85%;
+    --accent-foreground: 220 13% 13%;
+
+    /* Colores Semánticos - SOLO para acciones y estados */
+    --destructive: 0 72% 70%;
+    /* #F87171 - rojo suave para BORRAR */
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 65%;
+    /* #34D399 - verde suave para CREAR */
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 56%;
+    /* #FBBF24 - amarillo suave para ADVERTENCIAS */
+    --warning-foreground: 0 0% 100%;
+
+    --info: 211 96% 69%;
+    /* #60A5FA - azul suave para EDITAR/INFO */
+    --info-foreground: 0 0% 100%;
+
+    /* Borders e inputs */
+    --border: 220 13% 25%;
+    /* Bordes grises sutiles */
+    --input: 220 13% 25%;
+    --ring: 220 13% 85%;
+    /* Ring gris claro para focus */
+
+    --radius: 0.75rem;
+  }
+}
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Red Hat Text', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Equiem Design System Utilities */
+@layer utilities {
+
+  /* Gradients */
+  .bg-gradient-lavender {
+    background: linear-gradient(135deg, rgba(187, 185, 237, 0.3) 0%, rgba(255, 255, 255, 1) 100%);
+  }
+
+  .bg-gradient-lavender-dark {
+    background: linear-gradient(135deg, rgba(187, 185, 237, 0.15) 0%, rgba(24, 17, 68, 1) 100%);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(24, 17, 68, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Animaciones Temáticas - Faro */
+
+  /* Estrellas parpadeantes */
+  @keyframes twinkle {
+
+    0%,
+    100% {
+      opacity: 0.2;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-twinkle {
+    animation: twinkle 2.5s ease-in-out infinite;
+  }
+
+  /* Luz del faro girando */
+  @keyframes lighthouse-glow {
+
+    0%,
+    100% {
+      opacity: 0.5;
+      filter: brightness(1);
+    }
+
+    50% {
+      opacity: 1;
+      filter: brightness(1.5);
+    }
+  }
+
+  .animate-lighthouse-glow {
+    animation: lighthouse-glow 2s ease-in-out infinite;
+  }
+
+  /* Haz de luz giratorio */
+  @keyframes lighthouse-beam {
+    0% {
+      transform: rotate(-30deg);
+      opacity: 0.15;
+    }
+
+    50% {
+      transform: rotate(30deg);
+      opacity: 0.25;
+    }
+
+    100% {
+      transform: rotate(-30deg);
+      opacity: 0.15;
+    }
+  }
+
+  .animate-lighthouse-beam {
+    animation: lighthouse-beam 4s ease-in-out infinite;
+  }
+
+
+  /* Pulse suave para faros */
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  /* Art Pop 90s Animation */
+  @keyframes bounce-slow {
+
+    0%,
+    100% {
+      transform: translateY(0) rotate(12deg);
+    }
+
+    50% {
+      transform: translateY(-20px) rotate(12deg);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
+  }
+}
