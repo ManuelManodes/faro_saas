@@ -98,7 +98,7 @@ export function StudentsPage() {
                 </div>
                 <button
                     onClick={handleCreate}
-                    className="flex items-center gap-2 px-4 py-2 bg-decorative-blue text-white rounded-lg hover:bg-decorative-blue/90 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors shadow-sm font-medium"
                 >
                     <Plus className="w-4 h-4" />
                     Nuevo Estudiante
@@ -257,7 +257,7 @@ export function StudentsPage() {
                                             <div className="flex justify-end gap-2">
                                                 <button
                                                     onClick={() => handleEdit(student)}
-                                                    className="p-2 text-decorative-blue hover:bg-decorative-blue/10 rounded-lg transition-colors"
+                                                    className="p-2 text-foreground hover:bg-muted rounded-lg transition-colors"
                                                     title="Editar"
                                                 >
                                                     <Edit2 className="w-4 h-4" />

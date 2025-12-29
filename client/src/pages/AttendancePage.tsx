@@ -174,10 +174,10 @@ export function AttendancePage() {
                                     <button
                                         onClick={() => toggleAttendance(student.id)}
                                         className={cn(
-                                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 border",
+                                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
                                             isAbsent
-                                                ? "bg-destructive text-destructive-foreground border-destructive hover:bg-destructive/90"
-                                                : "bg-background text-muted-foreground hover:bg-muted"
+                                                ? "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm"
+                                                : "hover:bg-muted text-foreground"
                                         )}
                                     >
                                         <X className="w-4 h-4" /> Ausente
@@ -189,10 +189,10 @@ export function AttendancePage() {
                                             setAbsentStudents(newAbsent);
                                         }}
                                         className={cn(
-                                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 border",
+                                            "px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
                                             !isAbsent
-                                                ? "bg-success text-success-foreground border-success shadow-sm"
-                                                : "bg-background text-muted-foreground hover:bg-muted"
+                                                ? "bg-primary text-primary-foreground shadow-sm"
+                                                : "hover:bg-muted text-foreground"
                                         )}
                                     >
                                         <Check className="w-4 h-4" /> Presente

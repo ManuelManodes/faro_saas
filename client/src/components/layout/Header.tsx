@@ -186,18 +186,16 @@ export function Header() {
                 <div className="relative pl-4 border-l" ref={userMenuRef}>
                     <button
                         onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                        className="flex items-center gap-3 hover:bg-muted/50 p-1.5 rounded-lg transition-colors outline-none focus:ring-2 focus:ring-primary/20"
+                        className="flex items-center gap-3 hover:bg-muted/50 px-2 py-1.5 rounded-lg transition-colors"
                     >
                         <div className="text-right hidden sm:block">
                             <p className="text-sm font-medium leading-none">{user?.name || "Usuario"}</p>
                             <p className="text-xs text-muted-foreground">{user?.email || "Admin"}</p>
                         </div>
-                        <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-primary to-secondary p-[2px]">
-                            <div className="h-full w-full rounded-full bg-background flex items-center justify-center overflow-hidden">
-                                <span className="font-bold text-primary text-xs">
-                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : "MM"}
-                                </span>
-                            </div>
+                        <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span className="font-semibold text-primary text-sm">
+                                {user?.name ? user.name.substring(0, 2).toUpperCase() : "MM"}
+                            </span>
                         </div>
                         <ChevronDown className={cn("h-4 w-4 text-muted-foreground transition-transform duration-200", isUserMenuOpen ? "rotate-180" : "")} />
                     </button>

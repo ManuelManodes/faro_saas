@@ -37,6 +37,116 @@ export function LoginPage() {
             <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" />
             <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[100px]" />
 
+            {/* Estrellas titilantes - mayoría blancas, algunas de color */}
+            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                {[...Array(30)].map((_, i) => {
+                    // Solo 30% de las estrellas tienen color
+                    const isColored = i % 10 < 3;
+                    const colors = ['#8B5CF6', '#17B1C1', '#A78BFA'];
+                    const whiteGray = i % 2 === 0 ? '#FFFFFF' : '#E5E7EB';
+                    const starColor = isColored ? colors[i % colors.length] : whiteGray;
+
+                    return (
+                        <circle
+                            key={i}
+                            cx={`${(i * 37 + 13) % 100}%`}
+                            cy={`${(i * 47 + 7) % 100}%`}
+                            r={i % 3 === 0 ? "2" : "1.5"}
+                            fill={starColor}
+                            style={{
+                                animation: `twinkle ${3 + (i % 3)}s ease-in-out infinite`,
+                                animationDelay: `${i * 0.2}s`,
+                                opacity: isColored ? 0.7 : 0.5
+                            }}
+                        />
+                    );
+                })}
+
+                {/* Estrella fugaz con posición aleatoria */}
+                <line
+                    x1="5%"
+                    y1="15%"
+                    x2="25%"
+                    y2="35%"
+                    stroke="url(#shootingStarGradient)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    style={{
+                        animation: 'shootingStar1 12s ease-in-out infinite',
+                        opacity: 0
+                    }}
+                />
+                <line
+                    x1="70%"
+                    y1="10%"
+                    x2="90%"
+                    y2="30%"
+                    stroke="url(#shootingStarGradient2)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    style={{
+                        animation: 'shootingStar2 15s ease-in-out infinite',
+                        animationDelay: '5s',
+                        opacity: 0
+                    }}
+                />
+                <defs>
+                    <linearGradient id="shootingStarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#8B5CF6" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
+                    </linearGradient>
+                    <linearGradient id="shootingStarGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#17B1C1" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#17B1C1" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#17B1C1" stopOpacity="0" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <style>{`
+                @keyframes twinkle {
+                    0%, 100% { opacity: 0.3; }
+                    50% { opacity: 1; }
+                }
+                
+                @keyframes shootingStar1 {
+                    0% { 
+                        opacity: 0;
+                        transform: translate(0, 0);
+                    }
+                    3% { 
+                        opacity: 1;
+                    }
+                    6% { 
+                        opacity: 0;
+                        transform: translate(80px, 80px);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(80px, 80px);
+                    }
+                }
+                
+                @keyframes shootingStar2 {
+                    0% { 
+                        opacity: 0;
+                        transform: translate(0, 0);
+                    }
+                    3% { 
+                        opacity: 1;
+                    }
+                    6% { 
+                        opacity: 0;
+                        transform: translate(70px, 70px);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(70px, 70px);
+                    }
+                }
+            `}</style>
+
             <div className="w-full max-w-md p-8 bg-card/50 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl relative z-10 mx-4">
                 <div className="flex flex-col items-center mb-8">
                     <div className="p-3 bg-primary/10 rounded-xl mb-4">
